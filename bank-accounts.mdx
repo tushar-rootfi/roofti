@@ -1,0 +1,21 @@
+---
+title: "Bank Accounts"
+---
+
+**The Bank Accounts Data Model** streamlines access of bank account information across various accounting platforms, providing a consistent and unified representation of bank account data. 
+
+* Unified bank account properties: The model consolidates essential bank account details such as institution name, account name, balance, and currency, simplifying interactions with bank account data from different platforms.
+* Currency support: The model includes the ISO-4217 currency code for each bank account, enabling seamless handling of international transactions and reporting.
+
+  
+## Properties Supported
+
+| Property          | Type   | Description                                              |
+| ----------------- | ------ | -------------------------------------------------------- |
+| platform\_id      | string | The accounting Platform's id for the bank account        |
+| institution\_name | string | The name of the bank account                             |
+| account\_name     | string | Name of the bank account                                 |
+| account\_number   | string | The bank account number                                  |
+| balance           | float  | Balance of the bank account                              |
+| currency          | string | The ISO-4217 currency code                               |
+| updated\_at       | date   | The last ISO 8601 timestamp that the data was updated at |

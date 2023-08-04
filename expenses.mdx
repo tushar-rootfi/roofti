@@ -1,0 +1,34 @@
+---
+title: "Expenses"
+description: "Payment made by a business at the time of purchase (ex. a credit card payment)"
+---
+
+**The Expenses Data Model** is designed to streamline the management and retrieval of expense-related information across various accounting platforms.
+
+* Unified expense properties: The model unifies essential expense information, including document numbers, posted dates, payment modes, and currency details, facilitating consistent and accurate expense tracking.
+* Contact and account relationships: Expenses can be easily linked to specific contacts and accounts using their respective platform IDs, allowing for efficient organisation and reporting.
+* Line item support: The inclusion of line items within the expense data model enables more granular and detailed expense management, as well as the ability to track individual components of an expense.
+* Currency conversion: The `currency_rate` property supports multi-currency scenarios by providing the conversion rate between the expense currency and the base currency, ensuring accurate financial reporting across various currencies.
+
+  
+## Properties Supported
+
+| Property         | Type                          | Description                                                          |
+| ---------------- | ----------------------------- | -------------------------------------------------------------------- |
+| platform\_id     | string                        | The accounting platform's ID of the expenses                         |
+| contact\_id      | string                        | Platform ID of the contact to which this expense belongs             |
+| account\_id      | string                        | Platform ID of the account to which this expense belongs             |
+| document\_number | string                        | Reference/Document number of the expense                             |
+| posted\_date     | date                          | Date of the expense as recorded by the accounting platform           |
+| payment\_mode    | string                        | The payment mode from which the payment was made                     |
+| currency         | string                        | The ISO-4217 currency code                                           |
+| currency\_rate   | float                         | Rate between the currency of the payment and the base currency       |
+| total\_amount    | float                         | Total value of the expense                                           |
+| sub\_total       | float                         | Total pre tax value of the expense                                   |
+| tax\_amount      | float                         | Total tax amount levied on the expense                               |
+| total\_discount  | float                         | Total value of discounts applied to the expense                      |
+| memo             | string                        | Description of the expense                                           |
+| line\_items      | [Line Item](/docs/line-items) | List of line items contained in the expense                          |
+| contact          | [Contact](/docs/contacts)     | The contact to which this expense belongs                            |
+| account          | [Account](/docs/accounts)     | The account to which this expense belongs                            |
+| updated\_at      | date                          | The date at which the expense was updated on the accounting platform |

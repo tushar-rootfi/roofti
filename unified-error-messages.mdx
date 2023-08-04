@@ -1,0 +1,20 @@
+---
+title: "Unified Error Messages"
+description: "Work in Progress. Please report any inconsistencies"
+---
+
+When writing data there are several aspects of why an API can error out. You could be missing a required field, you could pass an incorrect ID, or you could be duplicating a unique value. Each platform has their own error codes and error messages. 
+
+We have tried to unify the responses of these write apis to help debug these potential errors that could occur using our write APIs. 
+
+Below are a list of error codes you can expect along with the error message. We also will return a `platform_error` field which will contain the error message thrown by the platform. This is useful in cases where our error code is `UNKOWN_ERROR`
+
+| Error Code              | Error Message                                 | Reason                                                                                                                                                                                 |
+| ----------------------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| MISSING\_PARAMS         | Missing required field: field\_name           | If a required field field\_name is missing. Eg: Name of an account                                                                                                                     |
+| INVALID\_PARAMS         | Invalid field: field\_name                    | If a certain field, field\_name, is invalid. Eg: GST number is not formatted correctly                                                                                                 |
+| RECORD\_NOT\_FOUND      | Data not found with given: field\_name        | If a record could not be found with the given ID of the field\_name. Eg: An incorrect contact\_id was passed when creating an invoice                                                  |
+| RECORD\_ALREADY\_EXISTS | Record already exists with given: field\_name | If a record already exists with the given value of the field\_name. Eg: Trying to create a customer with the same name                                                                 |
+| OPERATION\_DENIED       | Operation Denied: message                     | If the operation cannot be completed. Eg: If you create an invoice using an inactive customer or make an excess payment to an already closed invoice                                   |
+| RATE\_LIMIT\_EXCEEDED   | Rate limit exceeded                           | When using our synchronous write api, the rate limit can be exceeded. You should try again after 1 minute                                                                              |
+| UNKNOWN\_ERROR          | Unknown error                                 | if we cannot understand the error from the accounting platform. In such cases you should see the platform\_error. We will be monitoring such cases and actively fixing them over time. |

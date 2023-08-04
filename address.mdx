@@ -1,0 +1,30 @@
+---
+title: "Address"
+---
+
+**The Address Sub Data Model** is designed to store and manage address details associated with various accounting entities. 
+
+As a sub data model, it is always referenced by another data model, such as [company info](/docs/company-info). This structure allows for efficient organisation and retrieval of address information, ensuring a streamlined approach to handling address-related data.
+
+* Unified address data model: The model standardises data across different accounting platforms, simplifying access and management of address-related data.
+* Linked to other data models: Each address entry is connected to a specific [data model](/docs/enums#data-models) and includes the `platform_id` of that data model for easy cross-referencing.
+* Flexible address types: The data model supports three distinct address types, including company, shipping, and billing addresses, accommodating different use cases.
+* Geolocation support: The latitude and longitude properties enable geolocation functionality for more accurate address representation and potential mapping applications.
+
+  
+## Properties Supported
+
+| Property        | Type                                  | Description                                                                                                                                                      |
+| --------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| platform\_id    | string                                | The accounting Platform's id for the address                                                                                                                     |
+| type            | enum                                  | The type of address. Values are either COMPANY,SHIPPING or BILLING                                                                                               |
+| data\_model     | [Data Model](/docs/enums#data-models) | The Data Model linked to this address. Currently only these data models are supported: BILLS, INVOICES, PURCHASE\_ORDERS, SALES\_ORDERS, CONTACTS, COMPANY\_INFO |
+| data\_model\_id | string                                | The platform\_id of the Data Model this address is linked to                                                                                                     |
+| street          | string                                | The street section of the address                                                                                                                                |
+| locality        | string                                | The locality section of the address                                                                                                                              |
+| pincode         | string                                | The pincode section of the address                                                                                                                               |
+| city            | string                                | The city section of the address                                                                                                                                  |
+| state           | string                                | The state section of the address                                                                                                                                 |
+| country         | string                                | The country section of the address                                                                                                                               |
+| latitude        | string                                | The latitude of the address                                                                                                                                      |
+| longitude       | string                                | The longitude of the address                                                                                                                                     |

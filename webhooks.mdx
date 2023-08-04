@@ -1,0 +1,99 @@
+---
+title: "Webhooks"
+---
+
+The RootFi Platform provides support for webhooks, allowing you to sync data to your systems in real-time. When data is synced from the accounting platform, the webhook is triggered immediately. To configure a webhook, please follow the steps outlined below.
+
+  
+### How to Configure?
+
+1. Go to Webhooks section from the Settings page and Click on the 'Create Webhook' button.
+
+![](/images/443662f-image_4.png)
+
+1. Fill the required details  
+   1. Enter the name and url of the Webhook.  
+   2. Select the kind of Webhook you want: **Data Model Changes**, **Company Linked** or **Sync Completed**  
+   3. **Headers**: You can add an authorisation to your webhook such as a `token`.
+
+![](/images/4aa98b8-Screenshot_2023-06-21_at_5.54.18_PM.png)
+
+#### Company Linked Webhook
+
+The Company Linked Webhook fires when a connection is successfully linked to an invite link. 
+
+#### Sync Completed Webhook
+
+The Sync Completed Webhook fires when an asynchronous sync is completed. This occurs when you [trigger a sync](/docs/syncing-data) for the company or when you [write asynchronous data](/docs/asynchronous-writes). 
+
+#### Data Model Changes Webhook
+
+You need to further configure the Event Types for the Data Model Changes Webhook
+
+1. **CREATE:** This type of event will be called when the data is synced for the first time or when a new record is pulled from Accounting Platform.
+2. **UPDATE:**This type of event will be called only when the data changes (not everytime RootFi syncs data). So, even if RootFi syncs data everyday but data has not changed on Accounting platform, you will not be notified through a webhook.
+3. **DELETE**: This type of event will be called if data is deleted on the Accounting platform. This webhook will be called only if a `full_sync` has been performed.
+
+You can select the data models you want this webhook to fire for. You can select certain data models from the dropdown or select all.
+
+![](/images/da7428c-image_5.png)
+
+### Developer Reference
+
+> 📘
+> 
+> Webhooks are retried
+> 
+> Webhooks will be retried 3 times with an exponential delay. So, even if your server is busy due to large number of requests, there's no worry of loosing data 😃.
+
+Webhooks will be triggered with a **POST** request in the following body:
+
+#### Data Model Changes
+
+JSON
+
+`{
+    "webhook_type": "DATA_MODEL_CHANGES",
+    "company_id": 285,
+    "integration_type": "ZOHO_BOOKS",
+    "data_model": "ACCOUNTS",
+    "type": "CREATE",
+    "data": [],
+    "created_at": "2023-01-01T00:00:00.000Z"
+}
+`
+
+#### Sync Completed
+
+JSON
+
+`{
+    "webhook_type": "SYNC_COMPLETED",
+    "company_id": 285,
+    "integration_type": "ZOHO_BOOKS",
+    "data": {
+        "sync_id": "4yCSPQkVNAhV4Li",
+        "sync_start_time": "2023-03-03T00:00:00.000Z",
+        "sync_end_time": "2023-03-03T02:00:00.000Z",
+        "data_models_synced": {
+            "ACCOUNTS": "SUCCESS",
+            "BANK_ACCOUNTS": "SUCCESS",
+            "INVOICES": "SUCCESS",
+            "BILLS": "FAILED"
+        }
+    },
+    "created_at": "created_at"
+}
+`
+
+#### Company Linked
+
+JSON
+
+`{
+    "webhook_type": "COMPANY_LINKED",
+    "company_id": 285,
+    "integration_type": "ZOHO_BOOKS",
+    "created_at": "2023-01-01T00:00:00.000Z"
+}
+`

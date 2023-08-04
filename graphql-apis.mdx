@@ -1,0 +1,14 @@
+---
+title: "GraphQL APIs"
+description: "Use our GraphQL apis to pull the data you need"
+---
+
+GraphQL is a query language for APIs that makes is very easy to get the data you want suing a fully typed system.
+
+To get started visit our [GraphQL playground](/docs/graphql-playground). 
+
+Once you have entered your api key, you should see our entire schema of all our data models on the left side bar. Using the left side bar, you can interactively explore our schema and structurally design the query you need. We support **filtering of any field** across all data models. We also have an **aggregate field** that makes it very easy to retrieve aggregate fields like `total_count`. When retrieving vast amounts of data, we support **paginating** with take and skip fields as well as **ordering by and filtering by distinct values**
+
+Furthermore, **all foreign keys have their associated data models as fields.** 
+
+Example: In the Accounts data models, the field `parent_account_id` is supposed to be the `platform_id` of another Account (the parent account). Therefore, in our graphql schema, you can find a field called `parent_account`. You can get any data relating to that `parent_account` including the next `parent_account`.

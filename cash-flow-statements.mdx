@@ -1,0 +1,15 @@
+---
+title: "Cash Flow Statements"
+description: "Cash flow statements are financial statements that show the inflow and outflow of cash and cash equivalents from a company's operations, investments, and financing activities over a specific period of time."
+---
+
+| Property                        | Type                          | Description                                                     |
+| ------------------------------- | ----------------------------- | --------------------------------------------------------------- |
+| platform\_id                    | string                        | The accounting platforms ID for this item                       |
+| period\_start                   | date                          | start date of the cash flow statement report                    |
+| period\_end                     | date                          | end date of the cash flow statement report                      |
+| operating\_activities           | [Line Item](/docs/line-items) | line\_items for operating activities of income statement report |
+| investing\_activities           | [Line Item](/docs/line-items) | line\_items for investing activities of income statement report |
+| financing\_activities           | [Line Item](/docs/line-items) | line\_items for financing activities of income statement report |
+| cash\_at\_beginning\_of\_period | float                         | total amount at the beginning of the period                     |
+| cash\_at\_end\_of\_period       | float                         | total amount at the end of the period                           |

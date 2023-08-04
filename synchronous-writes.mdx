@@ -1,0 +1,30 @@
+---
+title: "Synchronous Writes"
+description: "Push data to your customers accounting platform seamlessly using a single api"
+---
+
+We support the ability to push data to your customers accounting platform in a synchronous and asynchronous manner. We also support the ability to write multiple objects of the same type in one request using our Batch Writes Feature.
+
+  
+By default our write APIs are synchronous. You can find our APIs in our [Postman Collection](/docs/rootfi-postman-collection). 
+
+The Postman has examples for all the different integrations we support as there are several small differences in the fields we support for the various integrations. 
+
+You can see these differences in our [coverage tool](https://rootfi.dev/coverage)
+
+  
+### Synchronous Batch Writes
+
+To send data as a batch, simply send the `data` as an array of objects. 
+
+**Note we only support batch writing data of the same data model**
+
+For example: To write 10 invoices and 10 bills, you can write 10 invoices using our invoices API and then write 10 bills using our bills API. You cannot write 10 invoices and 10 bills using one api. 
+
+> 📘
+> 
+> Expect higher latency using Batch Writes
+> 
+> When writing multiple objects in a single API call RootFi may only write objects serially to the accounting platform as the most of the underlying accounting platforms do not support batch writes. Thus expect higher latencies when using Synchronous Batch Writes. 
+> 
+> For this reason **we recommend using Asynchronous Batch Writes**

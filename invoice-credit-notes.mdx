@@ -1,0 +1,29 @@
+---
+title: "Invoice Credit Notes"
+description: "An Invoice Credit Note is a financial transaction representing a reduction that can be applied against one or multiple invoices issued to Customers."
+---
+
+**The Invoice Credit Notes Data Model** is designed to standardise and simplify the management of credit note information across various accounting platforms. 
+
+* Unified credit note properties: The model consolidates essential credit note details, such as customer ID, document number, total amount, and currency, making it easier to work with credit note data from different platforms.
+* Detailed status tracking: The model supports various credit note statuses, including draft, submitted, partially paid, paid, overdue, void, and unknown, for better organisation and reporting.
+* Line item integration: Credit notes can include an array of associated line items, ensuring comprehensive representation of credit note details and relationships to other data models.
+
+  
+## Properties Supported
+
+| Property          | Type                          | Description                                                                                                |
+| ----------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| platform\_id      | string                        | The accounting Platform's ID for the credit note                                                           |
+| contact\_id       | string                        | The accounting platform's unique identifier for the contact associated with this credit note               |
+| document\_number  | string                        | Reference number for the credit note                                                                       |
+| total\_amount     | float                         | Total amount of credit note                                                                                |
+| remaining\_credit | float                         | The balance amount remaining on the credit note                                                            |
+| posted\_date      | date                          | Date on which the credit note was posted                                                                   |
+| status            | enum                          | The status of the credit note. Values are: DRAFT, SUBMITTED, PARTIALLY\_PAID, PAID, OVERDUE, VOID, UNKNOWN |
+| memo              | string                        | Description of the credit note                                                                             |
+| currency          | string                        | Currency of the credit note                                                                                |
+| line\_Items       | [Line Item](/docs/line-items) | An array of Credit Note Line Items                                                                         |
+| invoices          | [Invoices](/docs/invoices)    | An Array of Invoices associated with the credit note                                                       |
+| contact           | [Contact](/docs/contacts)     | The contact associated with this credit note                                                               |
+| updated\_at       | date                          | The last ISO 8601 timestamp that the data was updated at                                                   |

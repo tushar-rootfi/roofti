@@ -1,0 +1,73 @@
+---
+title: "Connect SDK"
+---
+
+RootFi supports white labelling the onboarding process through the SDK. Users can link their Accounting Platform without coming to RootFi dashboard. We currently have only Javascript SDK but you can request us for other frameworks.
+
+### Developer Reference
+
+1. Create an invite link by calling [Create Invite Link API](https://postman.rootfi.dev/#5b230506-f6b9-4a67-a9df-6a32b9e257bb).  
+   1. If `company_name` is not passed, company wont be created and so, user have to enter it in the SDK.  
+   2. To enable only certain integrations, you can pass a list of [integration codes](/docs/enums#integrations) to the api with the key `integrations`. If only one integration is passed, user will be redirected to the Accounting platform login url directly.
+2. Pass the Invite Link ID to SDK
+
+### Setup SDK
+
+1. Import the source script in the head tag. `<script src="https://integrate.rootfi.dev/sdk.js"></script>`
+2. Load the RootFi SDK on page load by calling `RootfiLink.initialize()`.
+
+JavaScript
+
+`RootfiLink.initialize({
+    linkToken: "", // invite_link_id returned from api
+    onSuccess: () => {
+       // will be called, once connection is successful
+    },
+    onReady: () => {
+       // Will be called once the src script is loaded
+    },
+    onExit: () => {
+       // Will be called when user clicks close button on SDK.
+    },
+ });
+`
+
+1. Call `RootfiLink.openLink();` to open the SDK. Make sure you call this function onReady is called back on initialisation.
+2. Call `RootfiLink.closeLink();` to close the SDK. You can use this method to close the SDK in **onSuccess** and **onExit** Callback;
+
+Below is the HTML snippet of integrating SDK
+
+h
+
+`<html>
+  <head>
+    <script src="https://integrate.rootfi.dev/sdk.js" type="text/javascript"></script>
+    <script>
+     const RootfiLink = window.RootfiLink;
+     function loadRootFi() {  
+      RootfiLink.initialize({  
+          linkToken: "1234567", // invite_link_id returned from Create Invite Link API
+          onSuccess: () => { // connection succeeded  
+						RootfiLink.closeLink(); // Close the SDK
+            alert("Connection Success");
+            // Make an api call to save success status to your  db
+          },  
+          onReady: () => {  
+	    			// Open SDK when ready. You can open on a button Click.
+            RootfiLink.openLink();  
+          },  
+          onExit: () => {  
+            // Close SDK when user clicks closed.  
+            RootfiLink.closeLink();
+            // Or you can show a alert msg instead of closing iframe
+            alert("Please complete the setup");
+          },  
+        });  
+    }  
+    </script>  
+  </head>  
+  <body>  
+    <p><button onclick="loadRootFi()">Open Rootfi SDK</button></p>  
+    </body>  
+</html>
+`

@@ -1,0 +1,15 @@
+---
+title: "Balance Sheet"
+description: "A balance sheet is a financial report that shows a business's assets, liabilities, and equity at a specific point in time. In an accounting platform, a balance sheet is typically generated automatically based on the financial transactions that have been recorded in the system."
+---
+
+| Property      | Type                          | Description                                         |
+| ------------- | ----------------------------- | --------------------------------------------------- |
+| platform\_id  | string                        | The accounting platforms ID for this item           |
+| assets        | [Line Item](/docs/line-items) | line\_items for assets of balance sheet report      |
+| liabilities   | [Line Item](/docs/line-items) | line\_items for liabilities of balance sheet report |
+| equity        | [Line Item](/docs/line-items) | line\_items for equity of balance sheet report      |
+| period\_start | date                          | start date of the balance sheet report              |
+| period\_end   | date                          | end date of the balance sheet report                |
+| net\_assets   | number                        | total value of net assets                           |
+| currency      | string                        | currency of the balance sheet                       |

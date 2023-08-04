@@ -1,0 +1,23 @@
+---
+title: "Accounting Data Models Overview"
+---
+
+We have segregated [all our main data models](/docs/enums#data-models) into sections based on the use cases we have seen. Many of our main data models, such as Company Info, Invoices etc, also support sub-data models such as line items, addresses, phone numbers etc. 
+
+  
+Most of the time, you will need to retrieve the sub-data models along with the main data model data. Our [graphql api](/docs/graphql-playground) also allows you to independently fetch sub-data models. 
+
+---
+
+We have a few fields that are common for all data models that will help in filtering and managing the data. 
+
+| Field                     | Type                                         | Description                                                             |
+| ------------------------- | -------------------------------------------- | ----------------------------------------------------------------------- |
+| rootfi\_id                | float                                        | The unique ID we assign for that data's information                     |
+| rootfi\_company\_id       | float                                        | The RootFi designated id for the company                                |
+| rootfi\_integration\_type | [Integration Type](/docs/enums#integrations) | The accounting platform from which the data is being retrieved          |
+| rootfi\_created\_at       | date                                         | The date at which RootFi first synced this data                         |
+| rootfi\_updated\_at       | date                                         | The latest date at which RootFi updated this data                       |
+| raw\_data                 | json                                         | The raw JSON response we get from the accounting platform for that data |
+
+If you need to read a field that we do not support, you should be able to find it in the `raw_data`. Please reach out to us from our [website](https://rootfi.dev) if there is some data you would like that we do not yet support.

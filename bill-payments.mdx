@@ -1,0 +1,30 @@
+---
+title: "Bill Payments"
+---
+
+The Bill Payments Data Model is designed to standardise and simplify the management of bill payment information across various accounting platforms. 
+
+* Unified bill payment properties: The model unifies essential core payment details, such as payment date, payment mode, currency, and amount, ensuring consistent access to payment data.
+* Associated data linkage: The data model connects bill payments to related information, such as [bills](/docs/bills), [contacts](/docs/contacts), and [accounts](/docs/accounts), using platform-specific IDs for easy cross-referencing.
+* Currency conversion support: The `currency_rate` property provides the exchange rate between the payment currency and the base currency, facilitating multi-currency payment handling and reporting.
+
+  
+## Properties Supported
+
+| Property       | Type                      | Description                                                              |
+| -------------- | ------------------------- | ------------------------------------------------------------------------ |
+| platform\_id   | string                    | The accounting platforms ID for this bill payment                        |
+| payment\_id    | string                    | The accounting platforms ID for the payment                              |
+| bill\_id       | string                    | The platform's ID of the bill which this payment is associated with      |
+| contact\_id    | string                    | The platform's ID of the contact that makes the payment                  |
+| account\_id    | string                    | The platform's ID of the account to which this payment belongs           |
+| amount         | float                     | The total value of this payment                                          |
+| payment\_date  | date                      | The date on which the payment was made                                   |
+| payment\_mode  | string                    | The payment method used                                                  |
+| currency       | string                    | The ISO-4217 currency code                                               |
+| currency\_rate | float                     | Rate between the currency of the payment and the base currency           |
+| memo           | string                    | Description of the payment                                               |
+| bill           | [Bill](/docs/bills)       | The bill which this payment is associated with                           |
+| contact        | [Contact](/docs/contacts) | The contact that makes the payment                                       |
+| account        | [Account](/docs/accounts) | The account to which this payment belongs                                |
+| updated\_at    | date                      | The date at which the information was updated on the accounting platform |

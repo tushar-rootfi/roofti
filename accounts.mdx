@@ -1,0 +1,26 @@
+---
+title: "Accounts"
+---
+
+**The Accounts Data Model** is designed to streamline the management and retrieval of account-related information across various accounting platforms. 
+
+* Unified account properties: The model unifies essential account details, such as name, description, currency, and current balance, making it easier to work with account data from different platforms.
+* Hierarchical structure: Accounts can be linked to parent accounts using the `parent_account_id`, enabling the representation of complex account structures and relationships.
+* Categorisation and status: The model supports account categorisation with main categories and subcategories, as well as tracking account status for better organisation and reporting.
+
+  
+## Properties Supported
+
+| Property            | Type   | Description                                                                                                         |
+| ------------------- | ------ | ------------------------------------------------------------------------------------------------------------------- |
+| platform\_id        | string | The ID that the accounting platform uses to identify this account                                                   |
+| name                | string | The name of the account                                                                                             |
+| description         | string | Description of the account                                                                                          |
+| nominal\_code       | string | Reference given to each account for a business. It ensures money is allocated to the correct account.               |
+| currency            | string | The ISO-4217 currency code of the account                                                                           |
+| current\_balance    | float  | Current balance of the account                                                                                      |
+| status              | enum   | The status of the account. Values are: ACTIVE, ARCHIVED, UNKNOWN                                                    |
+| category            | enum   | The category of the account. Values are: ASSET, EXPENSE, LIABILITY, EQUITY,INCOME, PRIMARY, BANK, REVENUE , UNKNOWN |
+| sub\_category       | string | The sub category of the account                                                                                     |
+| parent\_account\_id | string | The platform ID of the parent account                                                                               |
+| updated\_at         | date   | Date the record was last updated in the accounting platform.                                                        |

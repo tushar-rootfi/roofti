@@ -1,0 +1,22 @@
+---
+title: "External Link"
+---
+
+**The External Link Sub Data Model** is designed to store and manage internet links related to various entities within your accounting integrations. This unified model helps to simplify and streamline the handling of external link information.
+
+As a sub data model, it is always referenced by another data model, such as [company info](/docs/company-info). This structure allows for efficient organisation and retrieval of external links information, ensuring a streamlined approach to handling external link related data.
+
+* Unified external link representation: The model standardises data across different accounting platforms, simplifying access and management of external link information.
+* Linked to other data models: Each external link entry is connected to a specific [data model](/docs/enums#data-models) and includes the `platform_id` of that data model for easy cross-referencing.
+* Versatile link types: The model supports two distinct types of external links, including websites and email addresses, allowing for diverse and relevant connections.
+
+  
+## Properties Supported
+
+| Property        | Type                                  | Description                                                                                                          |
+| --------------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| platform\_id    | string                                | The accounting Platform's id for the external link                                                                   |
+| type            | enum                                  | The type of external link. Values are either WEBSITE,EMAIL                                                           |
+| data\_model     | [Data Model](/docs/enums#data-models) | The Data Model linked to this external link. Currently only these data models are supported: CONTACTS, COMPANY\_INFO |
+| data\_model\_id | string                                | The platform\_id of the Data Model this external link is linked to                                                   |
+| link            | string                                | The internet link                                                                                                    |

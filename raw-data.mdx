@@ -1,0 +1,30 @@
+---
+title: "Raw Data"
+description: "Learn how to get integration data in the original format RootFi received it in."
+---
+
+Sometimes you may need to interact with data from the underlying platform that is not unified by RootFi. In those cases you can use the `raw_data` field.
+
+We support the use of `raw_data` for all our data models. 
+
+### Reading data
+
+The `raw_data` contains the entire response from the underlying platform for that data object.
+
+> 🚧
+> 
+> Raw Data may contain a lot of data
+> 
+> Please note, that since the raw data contains the entire output of the underlying platform's api, querying `raw_data` for a lot of objects may increase the latency of the read. apis.
+
+### Writing data
+
+You can pass in an object in the `raw_data` field when writing data. We will pass that data directly to the underlying platform. 
+
+Please read the documentation of the accounting platform to find the field name and field type of the data you wish to push to your customer's accounting platform. If you face any problems, please contact us and we are happy to help. 
+
+> 👍
+> 
+> Adding to our Unified API
+> 
+> If you find any field that you keep having to reference using the `raw_data` and you think it should be unified, please contact us and we are happy to discuss!

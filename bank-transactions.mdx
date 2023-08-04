@@ -1,0 +1,29 @@
+---
+title: "Bank Transactions"
+description: "Bank Transactions include the Transactional banking data for a specific company and account."
+---
+
+**The Bank Transactions Data Model** simplifies the management and retrieval of transaction information across different accounting platforms. 
+
+* Unified transaction properties: The model consolidates essential transaction details such as transaction date, amount, type, and status, making it easier to work with transaction data from various platforms.
+* Linked account and customer data: Transactions are associated with specific accounts and customers through the `account_id` and `customer_id` properties, facilitating easier tracking and reporting.
+* Currency support and exchange rates: The data model includes the transaction currency and exchange rate, enabling accurate representation of multi-currency transactions and conversions.
+
+  
+## Properties Supported
+
+| Property          | Type                          | Description                                                              |
+| ----------------- | ----------------------------- | ------------------------------------------------------------------------ |
+| platform\_id      | string                        | The accounting platforms ID for the transaction                          |
+| account\_id       | string                        | Platform ID for the account to which this transaction belongs            |
+| contact\_id       | string                        | The platform's ID for the contact to that made the transaction           |
+| transaction\_date | date                          | Date of the transaction                                                  |
+| amount            | float                         | The total transaction amount                                             |
+| type              | string                        | The type of the transaction                                              |
+| status            | string                        | The status of the transaction                                            |
+| currency          | string                        | The ISO-4217 currency code of the transaction                            |
+| currency\_rate    | float                         | Rate between the currency of the payment and the base currency           |
+| line\_items       | [Line Item](/docs/line-items) | Array of Transaction Line items associated with this transaction         |
+| account           | [Account](/docs/accounts)     | The account to which this transaction belongs                            |
+| contact           | [Contact](/docs/contacts)     | The contact to that made the transaction                                 |
+| updated\_at       | date                          | The date at which the transaction was updated on the accounting platform |

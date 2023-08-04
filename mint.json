@@ -1,0 +1,45 @@
+{
+  "name": "Roofti",
+  "logo": {
+    "light": "/logo/light.png",
+    "dark": "/logo/dark.png"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#5344E5",
+    "light": "#7F73F4",
+    "dark": "#5344E5"
+  },
+  "topbarCtaButton": {
+    "name": "Sign Up",
+    "url": "https://integrate.rootfi.dev/signup"
+  },
+  "topbarLinks": [
+    {
+      "name": "Log In",
+      "url": "https://integrate.rootfi.dev/login"
+    }
+  ],
+  "anchors": [
+    {
+      "name": "Blog",
+      "icon": "newspaper",
+      "url": "https://www.rootfi.dev/blog"
+    },
+    {
+      "name": "Security",
+      "icon": "lock",
+      "url": "https://www.rootfi.dev/security"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": ["introduction"]
+    }
+  ],
+  "footerSocials": {
+    "twitter": "https://twitter.com/RootFiAPI",
+    "linkedin": "https://www.linkedin.com/company/rootfi/"
+  }
+}

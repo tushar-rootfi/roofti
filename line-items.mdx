@@ -1,0 +1,34 @@
+---
+title: "Line Items"
+---
+
+**The Line Item Sub Data Model** is designed to standardise and simplify the representation of individual line items across various accounting documents and platforms.
+
+As a sub data model, it is always referenced by another data model, such as bills or invoices. This structure allows for efficient organisation and retrieval of address information, ensuring a streamlined approach to handling address-related data.
+
+* Unified line item representation: The model standardises data across different accounting platforms, simplifying access and management of line item information.
+* Multiple data model support: The Line Item data model can be linked from a range of data models, such as [bills](/docs/bills), [invoices](/docs/invoices), [invoice credit notes](/docs/invoice-credit-notes), [bill credit notes](/docs/bill-credit-notes), [expenses](/docs/expenses), [purchase orders](/docs/purchase-orders), and [sales orders](/docs/sales-orders), providing a unified structure for diverse use cases.
+* Calculated values: Pre-tax subtotals, tax amounts, and total amounts are included in the data model, streamlining financial calculations and document summaries.
+
+  
+## Properties Supported
+
+| Property                | Type                        | Description                                                                                                                                                                    |
+| ----------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| platform\_id            | string                      | Platform ID associated with this line item                                                                                                                                     |
+| item\_id                | string                      | The platform ID of the item associated with this line item                                                                                                                     |
+| tax\_id                 | string                      | The platform ID of the tax associated with this line item                                                                                                                      |
+| account\_id             | string                      | The platform ID of the account associated with this line item                                                                                                                  |
+| line\_item\_type        | enum                        | The data model linked to the line item. Values are: BILLS, INVOICES, INVOICE\_CREDIT\_NOTES, BILL\_CREDIT\_NOTES, EXPENSES,PURCHASE\_ORDERS, SALES\_ORDERS, BANK\_TRANSACTIONS |
+| line\_item\_type\_id    | string                      | The platform ID of the associated data model                                                                                                                                   |
+| description             | string                      | The description for this line item                                                                                                                                             |
+| quantity                | float                       | The quantity of the product/service for this line item                                                                                                                         |
+| unit\_amount            | float                       | Price per unit for this line item                                                                                                                                              |
+| sub\_total              | float                       | The pre tax total value for this line item                                                                                                                                     |
+| tax\_amount             | float                       | The tax amount for this line item                                                                                                                                              |
+| total\_amount           | float                       | The total value of this line item                                                                                                                                              |
+| tracking\_category\_ids | string\[\]                  |                                                                                                                                                                                |
+| item                    | [Item](/docs/items)         | The item associated with this line item                                                                                                                                        |
+| tax\_rate               | [Tax Rate](/docs/tax-rates) | The tax associated with this line item                                                                                                                                         |
+| account                 | [Account](/docs/accounts)   | The account associated with this line item                                                                                                                                     |
+| updated\_at             | date                        | Date the record was last updated in the accounting platform.                                                                                                                   |

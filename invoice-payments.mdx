@@ -1,0 +1,30 @@
+---
+title: "Invoice Payments"
+description: "The payments recorded against Invoices."
+---
+
+**The Invoice Payments Data Model** streamlines the representation and management of invoice payment information across multiple accounting platforms. 
+
+* Unified payment properties: The model consolidates essential payment details, such as amount, currency, payment date, and payment mode, simplifying the handling of payment data from different platforms.
+* Linked to contacts, accounts, and invoices: Each payment entry is connected to a specific [contact](/docs/contacts), [account](/docs/accounts), and [invoice](/docs/invoices) using their respective platform IDs, ensuring accurate data representation and easier cross-referencing.
+* Currency rate conversion support: The `currency_rate` property enables the tracking of currency conversion rates between the payment currency and the base currency, facilitating accurate financial reporting.
+
+  
+## Properties Supported
+
+| Property       | Type                      | Description                                                              |
+| -------------- | ------------------------- | ------------------------------------------------------------------------ |
+| platform\_id   | string                    | The accounting platforms ID for this invoice payment                     |
+| contact\_id    | string                    | The platform's ID for the contact that makes the payment                 |
+| account\_id    | string                    | The platform's ID for the account to which this payment belongs          |
+| invoice\_id    | string                    | The platform's ID for the invoice which this payment is associated with  |
+| amount         | float                     | The total value of this payment                                          |
+| currency       | string                    | The ISO-4217 currency code of the account                                |
+| currency\_rate | float                     | Rate between the currency of the payment and the base currency           |
+| payment\_date  | date                      | The date on which the payment was made                                   |
+| payment\_mode  | string                    | The payment mode from which the payment was made                         |
+| memo           | string                    | Optional description for the payment                                     |
+| invoice        | [Invoice](/docs/invoices) | The invoice which this payment is associated with                        |
+| contact        | [Contact](/docs/contacts) | The contact that makes the payment                                       |
+| account        | [Account](/docs/accounts) | The account to which this payment belongs                                |
+| updated\_at    | date                      | The date at which the information was updated on the accounting platform |

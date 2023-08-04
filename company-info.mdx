@@ -1,0 +1,27 @@
+---
+title: "Company Info"
+---
+
+**The Company Info Data Model** is designed to simplify the management and retrieval of company-related information across various accounting platforms. 
+
+* Unified company properties: The model unifies essential company details, such as name, legal name, base currency, and registration number, allowing for easy access to and management of company information from different platforms.
+* Comprehensive contact information: Retrieve company addresses, external links, and phone numbers for a complete view of company contacts.
+* Financial year tracking: Monitor the company's financial year start date for accurate reporting and analysis.
+
+  
+## Properties Supported
+
+| Property             | Type                                 | Description                                                  |
+| -------------------- | ------------------------------------ | ------------------------------------------------------------ |
+| platform\_id         | string                               | The accounting Platform's id for the company                 |
+| name                 | string                               | The company name                                             |
+| legal\_name          | string                               | Legal name of the company                                    |
+| base\_currency       | string                               | The primary currency of the company                          |
+| fiscal\_start\_at    | date                                 | The starting date of the Financial year for this company     |
+| org\_created\_at     | date                                 | Date the record was created in the RootFi system.            |
+| registration\_number | string                               | Reference of the registration number                         |
+| tax\_number          | string                               | Company tax number                                           |
+| addresses            | [Address](/docs/address)             | List of addresses for the company                            |
+| external\_links      | [External Link](/docs/external-link) | List of external links for the company                       |
+| phone\_numbers       | [Phone Number](/docs/phone-number)   | List of phone number for the company                         |
+| updated\_at          | date                                 | Date the record was last updated in the accounting platform. |

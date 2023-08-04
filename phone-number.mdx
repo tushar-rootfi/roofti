@@ -1,0 +1,22 @@
+---
+title: "Phone Number"
+---
+
+**The Phone Number Sub Data Model** is designed to streamline and standardize the handling of phone number information across different accounting platforms.
+
+As a sub data model, it is always referenced by another data model, such as [company info](/docs/company-info). This structure allows for efficient organisation and retrieval of phone number information, ensuring a streamlined approach to handling phone number related data.
+
+* Unified phone number representation: The model standardises data across different accounting platforms, simplifying access and management of phone number information.
+* Linked to other data models: Each phone number entry is connected to a specific [data model](/docs/enums#data-models) and includes the `platform_id` of that data model for easy cross-referencing.
+* Versatile phone number types: The data model supports three distinct phone number types, including mobile, telephone, and fax, catering to different communication requirements.
+
+  
+## Properties Supported
+
+| Property        | Type                                  | Description                                                                                                         |
+| --------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| platform\_id    | string                                | The accounting Platform's id for the phone number                                                                   |
+| type            | enum                                  | The type of phone number. Values are either MOBILE,TELEPHONE or FAX                                                 |
+| data\_model     | [Data Model](/docs/enums#data-models) | The Data Model linked to this phone number. Currently only these data models are supported: CONTACTS, COMPANY\_INFO |
+| data\_model\_id | string                                | The platform\_id of the Data Model this phone number is linked to                                                   |
+| number          | string                                | The phone number                                                                                                    |

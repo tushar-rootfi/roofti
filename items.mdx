@@ -1,0 +1,50 @@
+---
+title: "Items"
+---
+
+**The Items Data Model** is designed to simplify the management and retrieval of item-related information across various accounting platforms. 
+
+* Unified item properties: The model unifies essential item details such as name, description, status, and type, making it easier to work with item data from different platforms.
+* Item detail flexibility: The model supports separate details for items being purchased (`bill_item`) and items being sold (`invoice_item`), enabling accurate tracking of item-related transactions.
+* Associated accounts and tax rates: Each item can be linked to specific purchase and sales accounts, as well as purchase and sales tax rates, for seamless integration with other accounting data models.
+
+  
+### Properties Supported
+
+| Property           | Type                                   | Description                                                                   |
+| ------------------ | -------------------------------------- | ----------------------------------------------------------------------------- |
+| platform\_id       | string                                 | The accounting platforms ID for this item                                     |
+| name               | string                                 | Name of the item                                                              |
+| description        | string                                 | Description of the item                                                       |
+| status             | enum                                   | Status of the item. Values are: ACTIVE, ARCHIVED, UNKNOWN                     |
+| type               | enum                                   | Type of the item. Values are: INVENTORY, NON\_INVENTORY, SERVICE, UNKNOWN     |
+| code               | string                                 | Reference code of the item                                                    |
+| quantity\_on\_hand | float                                  | Quantity on hand                                                              |
+| is\_bill\_item     | boolean                                | Check if there are details (bill\_item) of this item getting purchased        |
+| bill\_item         | [Item Detail](/docs/items#item-detail) | Item details of this item getting purchased                                   |
+| is\_invoice\_item  | boolean                                | Check if there are details (invoice\_item) of this item getting sold          |
+| invoice\_item      | [Item Detail](/docs/items#item-detail) | Item details of this item getting sold                                        |
+| purchase\_account  | [Account](/docs/accounts)              | The account which is associated with the (bill) item that are being purchased |
+| sales\_account     | [Account](/docs/accounts)              | The account which is associated with the (invoice) item that are being sold   |
+| sales\_tax         | [Tax Rate](/docs/tax-rates)            | The tax which is associated with the (invoice) item that are being sold       |
+| purchase\_tax      | [Tax Rate](/docs/tax-rates)            | The tax which is associated with the (bill) item that are being purchased     |
+| updated\_at        | date                                   | The date on which the information was updated on the accounting platform      |
+
+  
+## Item Detail
+
+**The Item Details Data Model** is a complementary model providing additional information about individual items.
+
+* Associated account and tax: The model links items to their respective accounts and tax rates using `account_id` and `tax_id`, enabling seamless integration with other accounting data models.
+* Detailed item description: The `description` property allows for a more in-depth understanding of each item's nature and purpose.
+* Unit price tracking: The `unit_price` property records the cost of a single unit of the item, making it easy to calculate the total cost of transactions involving the item.
+
+  
+### Properties Supported
+
+| Property    | Type   | Description                                              |
+| ----------- | ------ | -------------------------------------------------------- |
+| account\_id | string | The platform ID of the account associated with this item |
+| tax\_id     | string | The platform ID of the tax associated with this item     |
+| description | string | A description of the item                                |
+| unit\_price | float  | The unit price of the item                               |

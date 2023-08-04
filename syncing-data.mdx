@@ -1,0 +1,69 @@
+---
+title: "Syncing Data"
+---
+
+## Manual Sync
+
+### Dashboard
+
+You can trigger a full sync for the company from the dashboard by clicking the Refresh Button on the top left of the company page.
+
+![](/images/81af569-image.png)
+
+### API
+
+You can manually trigger a sync from your application through our [Sync API](https://postman.rootfi.dev/#6ca4c34c-bbf3-4bbe-9c29-65061b0daca1). Our sync API offers more control over when and how you want to sync the data for each company. 
+
+We offer two modes of syncing 
+
+* **Partial Sync (default)** \- Only syncs data that has been changed since the last sync.
+* **Full Sync** \- Syncs the full data from the underlying platform. You can pass `full_sync: true` to toggle a full sync.
+
+You can also choose what Data Models you want to sync by passing an array of [Data Models](/docs/enums#data-models) to a `data_models_to_sync` parameter.
+
+> 🚧
+> 
+> Only sync the data you need
+> 
+> We suggest performing a sync only for Data Models you need to not exhaust the underlying platform's rate limits.
+  
+  
+## Auto Sync
+
+### What is Auto-Sync?
+
+The Auto Sync frequency is the rate at which our Universal API checks for updates and syncs data with our systems. This frequency can vary depending on the specific needs of the API and the system it is used in.
+
+The Auto Sync frequency for an API is typically determined based on the needs of the system it is used in and the specific type of data it provides. Choosing an appropriate Auto Sync frequency for each data model in terms of priority is vital to ensure that the API offers accurate and up-to-date information.
+
+  
+### How to Use Auto-Sync?
+
+Navigate to the Settings page on the RootFi Integrate **Dashboard** and select 'Auto Sync'.
+
+![](/images/d3b6795-Screenshot_2022-12-19_at_16.08.02.png)
+
+Here are some important terms:
+
+1. **Data Model:** The Data Model to which auto sync configuration applies.
+2. **Initial Fetch:** This is a toggle option,  
+   1. when **enabled,** the data model will be synced when a company is created and data will be stored.  
+   2. when **disabled**, the data model will not be called for the sync data API.
+3. **Status:** This is a toggle option,  
+   1. when **enabled,** the enabled data model will be auto synced.  
+   2. when **disabled,** the enabled data model will not be auto-synced.
+4. **Interval:** the rate at which the API checks for updates and syncs data with other systems.
+5. **Sync Frequency:** Options are **Daily**, **Weekly**, **Monthly**.  
+   1. **Daily**: Based on the interval, the data model will be synced in Daily Intervals.  
+   2. **Weekly**: Based on the interval, the data model will be synced in Weekly Intervals.  
+   3. **Monthly**: Based on the interval, the data model will be synced in Monthly Intervals.
+6. For example, when the **Accounts Data Model**, has been set with an **Interval of 2** and **Sync Frequency of Daily**. It will be synced every two days.
+
+  
+> 📘
+> 
+> Why is setting an appropriate frequency for each data model important?
+> 
+> **Setting an appropriate frequency for each data model matters because of the underlying rate limits of the platform.** 
+> 
+> If your customers have a lot of data, even if you set all the data models to sync hourly the syncing will be automatically paused and restarted based on the the platforms rate limits so you may not get real time data of the data models you care about. Have a high sync frequency may also disrupt writing data to the platform since those api's also consume the api quota of the underlying platform.

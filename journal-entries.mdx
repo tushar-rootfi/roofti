@@ -1,0 +1,51 @@
+---
+title: "Journal Entries"
+description: "The basic records of a company's financial transactions used to record the debits and credits of each transaction."
+---
+
+**The Journal Entries Data Model** simplifies the management and retrieval of journal entry information across various accounting platforms. 
+
+* Unified journal entry properties: The model unifies essential journal entry details, such as account ID, amount, currency, description, and posted date, making it easier to work with journal entry data from different platforms.
+* Journal entry lines: The `journal_lines` property includes an array of related journal lines, providing a comprehensive view of the journal entry's constituent transactions.
+
+  
+### Properties Supported
+
+| Property             | Type                                                 | Description                                                                           |
+| -------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| platform\_id         | string                                               | The accounting Platform's ID for this journal entry                                   |
+| account\_id          | string                                               | The accounting platform's unique ID for the account associated with the journal entry |
+| amount               | float                                                | The total amount of the journal entry                                                 |
+| currency             | string                                               | The ISO-4217 currency code                                                            |
+| currency\_rate       | float                                                | Rate between the currency of the payment and the base currency                        |
+| document\_number     | string                                               | Reference number for the journal entry                                                |
+| journal\_entry\_type | string                                               | Type of the journal entry                                                             |
+| description          | string                                               | Description of the journal entry                                                      |
+| posted\_date         | date                                                 | Date of the journal entry                                                             |
+| journal\_lines       | [Journal Lines](/docs/journal-entries#journal-lines) | An array of Journal Lines                                                             |
+| account              | [Account](/docs/accounts)                            | The account associated with the journal entry                                         |
+| updated\_at          | date                                                 | The date at which the information was updated on the accounting platform              |
+
+  
+## Journal Lines
+
+**The Journal Lines Data Model** complements the Journal Entries Data Model, focusing on individual transactions within a journal entry.
+
+* Unified journal line properties: The model unifies essential journal line details, such as type, description, net amount, and tax amount, making it easier to work with journal line data from different platforms.
+* Hierarchical relationship with journal entries: Journal lines are associated with specific journal entries through the `journal_entry_id` property, enabling a clear understanding of their context within the broader financial record.
+* Relationship with other data models: Journal lines are connected to accounts, customers, and taxes using their respective `platform_id` properties, ensuring data consistency and accuracy across different accounting platforms.
+
+  
+### Properties Supported
+
+| Property           | Type   | Description                                                             |
+| ------------------ | ------ | ----------------------------------------------------------------------- |
+| platform\_id       | string | The accounting Platform's ID for this journal entry                     |
+| journal\_entry\_id | string | The platform ID for the journal entry associated with this journal line |
+| account\_id        | string | The platform ID for the account associated with this journal line       |
+| customer\_id       | string | The platform ID for the customer associated with this journal line      |
+| tax\_id            | string | The platform ID for the tax associated with this journal line           |
+| type               | enum   | Type of the journal line item. Values are: DEBIT, CREDIT                |
+| description        | string | Description of the journal line                                         |
+| net\_amount        | float  | The total amount of this journal line                                   |
+| tax\_amount        | float  | The total tax amount of this journal line                               |

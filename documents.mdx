@@ -1,0 +1,32 @@
+---
+title: "Documents"
+---
+
+**The Documents Data Model** simplifies the handling of document documents across various accounting platforms, providing a standardised approach to accessing and managing document-related information.
+
+* Unified document properties: The model unifies essential document details, such as file name, file type, file size, and platform ID, making it easier to work with documents from different platforms.
+* Document type association: Documents can be linked to specific document types (e.g., bills, invoices, expenses) using the `document_type_id` and `document_type` properties, facilitating easy retrieval and organisation of documents.
+* File metadata: The model includes file type (MIME Type) and file size properties, enabling developers to handle documents appropriately and ensure compatibility with their applications.
+* Document upload status: When you request for a document to be downloaded, Rootfi will download the document then cache the document on to its servers so future calls to download the document will be faster. The `document_uploaded` property indicates whether Rootfi has uploaded the document to its servers.
+
+  
+> 📘
+> 
+> Downloading the Document
+> 
+> After initially syncing the documents data `document_uploaded` will be `false` for all the documents. To download the document you must call the [Download Documents API](https://postman.rootfi.dev/#049236ea-0e6b-4a50-9062-9d5df8397e41). This API will download the document and return a temporary `download_link`.
+
+  
+## Properties Supported
+
+| Property           | Type                                  | Description                                                                                                                                                                      |
+| ------------------ | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| platform\_id       | string                                | The accounting platforms ID for the document                                                                                                                                     |
+| file\_name         | string                                | Name of the document that was used on the accounting platform                                                                                                                    |
+| file\_type         | string                                | The file type of the document as given by the accounting platform. Formatted as a [MIME Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics%5Fof%5FHTTP/MIME%5Ftypes) |
+| file\_size         | float                                 | The file size of the document in bytes                                                                                                                                           |
+| document\_type\_id | string                                | The platform ID of the document type with which this document is linked to                                                                                                       |
+| document\_type     | [Data Model](/docs/enums#data-models) | The name of the data model with which this document is linked. Currently only these data models are supported: BILLS,INVOICES,EXPENSES                                           |
+| download\_link     | string                                | A **temporary** download link through which you can download the attachment. Will only be present if document\_uploaded is true                                                  |
+| document\_uploaded | boolean                               | A value to verify that Rootfi that uploaded the document to it's servers                                                                                                         |
+| updated\_at        | date                                  | The last ISO 8601 timestamp that the data was updated at                                                                                                                         |

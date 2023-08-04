@@ -1,0 +1,41 @@
+---
+title: "Tax Rates"
+---
+
+**The Tax Rates Data Model** is designed to provide a unified representation of tax rates across various accounting platforms.
+
+* Unified tax rate properties: The model unifies essential tax rate details, such as name, code, effective tax rate, and total tax rate, streamlining the handling of tax data from different platforms.
+* Tax components support: The data model encompasses an array of individual tax components, enabling the representation of complex tax structures and relationships between components.
+* Effective tax rate calculation: The model accounts for the compounding effects of all tax components, providing an accurate effective tax rate for each entry.
+
+  
+### Properties Supported
+
+| Property             | Type                                            | Description                                                                               |
+| -------------------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| platform\_id         | string                                          | The accounting platforms ID for the tax rate                                              |
+| name                 | string                                          | Display name                                                                              |
+| code                 | string                                          | Simple ID for the tax rate                                                                |
+| tax\_type            | string                                          | The type of tax as mentioned in the accounting platform                                   |
+| effective\_tax\_rate | float                                           | The total tax rate after accounting for the compounding effects of the all tax components |
+| total\_tax\_rate     | float                                           | The sum of all the tax rate components                                                    |
+| components           | [Tax Component](/docs/tax-rates#tax-components) | An array of all the tax components                                                        |
+
+  
+## Tax Components
+
+**The Tax Components Data Model** complements the Tax Rates Data Model by providing detailed information about individual components of tax rates.
+
+* Essential component properties: The model captures important tax component details, such as name, code, and rate, making it easier to work with tax components from various platforms.
+* Compounding effect tracking: The `is_compound` property indicates whether a tax component has a compounding effect on the overall tax rate, allowing for accurate tax rate calculations.
+* Seamless integration with Tax Rates Data Model: Tax Components are integrated as part of the Tax Rates Data Model, ensuring a comprehensive representation of tax rate structures and relationships.
+
+  
+### Properties Supported
+
+| Property     | Type    | Description                              |
+| ------------ | ------- | ---------------------------------------- |
+| name         | string  | Display name                             |
+| code         | string  | Simple ID for the tax component          |
+| rate         | float   | Tax Rate                                 |
+| is\_compound | boolean | If the tax rate has a compounding effect |

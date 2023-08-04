@@ -1,0 +1,34 @@
+---
+title: "Sales Orders"
+description: "A record of goods or services sold to a customer"
+---
+
+**The Sales Orders Data Model** standardises information related to sales orders across various accounting platforms, making it simpler to manage and access relevant data. 
+
+* Unified sales order properties: The model consolidates essential sales order information, such as contact ID, document number, dates, description, payment mode, and currency-related data.
+* Financial calculations: The model includes properties for total discount, tax amount, sub-total, and total amount, facilitating accurate financial reporting and analysis.
+* Invoice associations: The `invoices` property links sales orders to their corresponding invoices, enabling seamless navigation and cross-referencing between the two data models.
+
+  
+## Properties Supported
+
+| Property         | Type                          | Description                                                                                                |
+| ---------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| platform\_id     | string                        | Accounting platform's ID for the sales order                                                               |
+| contact\_id      | string                        | The accounting platform's unique ID of the contact associated with this sales order                        |
+| document\_number | string                        | Reference number for the sales order                                                                       |
+| posted\_date     | string                        | Date of creation of the sales order                                                                        |
+| delivery\_date   | string                        | The delivery date for the sales order                                                                      |
+| description      | string                        | Description of the sales order                                                                             |
+| payment\_mode    | string                        | The payment mode from which the payment was made                                                           |
+| currency         | string                        | The ISO-4217 currency code                                                                                 |
+| currency\_rate   | float                         | Rate between the currency of the payment and the base currency                                             |
+| status           | enum                          | The status of the sales order. Values are: DRAFT, SUBMITTED, PARTIALLY\_PAID, PAID, OVERDUE, VOID, UNKNOWN |
+| total\_discount  | float                         | Total value of discounts applied to the sales order                                                        |
+| tax\_amount      | float                         | Total tax amount levied on the sales order                                                                 |
+| sub\_total       | float                         | Total pre tax value of the sales order                                                                     |
+| total\_amount    | float                         | Total value of the sales order                                                                             |
+| line\_items      | [Line Item](/docs/line-items) | Array of Sales Order Line items associated with the purchase order                                         |
+| invoices         | [Invoice](/docs/invoices)     | Array of invoices associated with the sales order                                                          |
+| addresses        | [Address](/docs/address)      | Array of addresses associated with this sales order                                                        |
+| contact          | [Contact](/docs/contacts)     | The contact associated with this sales order                                                               |

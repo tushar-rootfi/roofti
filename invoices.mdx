@@ -1,0 +1,38 @@
+---
+title: "Invoices"
+description: "An invoice is an itemized record of goods sold or services provided to a customer."
+---
+
+**The Invoices Data Model** is designed to standardise and simplify the handling of invoice-related information across different accounting platforms.
+
+* Unified invoice properties: The model consolidates essential invoice details, such as document number, due date, currency, status, and total amounts, making it easier to manage invoice data from various platforms.
+* Linked entities: Invoices can be associated with accounts, customers, line items, payments, and sales orders, providing a complete view of the invoicing process and related transactions.
+* Flexible status tracking: The model supports a range of invoice statuses, such as draft, submitted, partially paid, and overdue, for better organisation and reporting.
+
+  
+## Properties Supported
+
+| Property         | Type                                      | Description                                                                                            |
+| ---------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| platform\_id     | string                                    | The accounting Platform's ID for this invoice                                                          |
+| account\_id      | string                                    | The platform's ID for the account to which this invoice belongs                                        |
+| contact\_id      | string                                    | The Accounting Platform's unique ID for the contact who receives this invoice                          |
+| document\_number | string                                    | Reference document number for the invoice                                                              |
+| posted\_date     | date                                      | Date of the invoice as recorded by the accounting platform                                             |
+| due\_date        | date                                      | The due date for the invoice as an ISO 8601 timestamp                                                  |
+| currency         | string                                    | The ISO-4217 currency code                                                                             |
+| currency\_rate   | float                                     | Rate between the currency of the payment and the base currency                                         |
+| status           | enum                                      | The status of the invoice. Values are: DRAFT, SUBMITTED, PARTIALLY\_PAID, PAID, OVERDUE, VOID, UNKNOWN |
+| total\_discount  | float                                     | Total value of discounts applied to the invoice                                                        |
+| tax\_amount      | float                                     | Total tax amount levied on the invoice                                                                 |
+| sub\_total       | float                                     | Total pre tax value of the invoice                                                                     |
+| total\_amount    | float                                     | Total value of the invoice                                                                             |
+| amount\_due      | float                                     | Total amount pending for the invoice                                                                   |
+| memo             | string                                    | Description of the invoice                                                                             |
+| line\_items      | [Line Item](/docs/line-items)             | Array of Invoice Line items associated with the invoice (see below)                                    |
+| payments         | [Invoice Payment](/docs/invoice-payments) | Array of Invoice Payments associated with the invoice                                                  |
+| sales\_orders    | [Sales Order](/docs/sales-orders)         | Array of linked Sales Orders associated with this invoice                                              |
+| documents        | [Document](/docs/documents)               | Array of Invoice Documents associated with the invoice                                                 |
+| account          | [Account](/docs/accounts)                 | The account to which this invoice belongs                                                              |
+| contact          | [Contact](/docs/contacts)                 | The contact who receives this invoice                                                                  |
+| updated\_at      | date                                      | Date the record was last updated in the accounting platform.                                           |

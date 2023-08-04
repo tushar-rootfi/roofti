@@ -1,0 +1,38 @@
+---
+title: "Bills"
+description: "A record of goods or services purchased from a vendor"
+---
+
+**The Bills Data Model** is designed to simplify the handling and retrieval of bill-related information across various accounting platforms. 
+
+* Unified bill properties: The model unifies essential bill information such as vendor, account, dates, currency, and amounts, enabling a unified view of bills from different platforms.
+* Status tracking: The model supports tracking the status of a bill, including draft, submitted, partially paid, paid, overdue, void, or unknown, for better bill management and reporting.
+* Relationship with other data models: The model allows for the inclusion of associated line items, bill payments, and purchase orders, providing a complete picture of each bill.
+* Currency conversion: The `currency_rate` property allows for easy currency conversion between the payment currency and the base currency, ensuring accurate financial reporting and analysis.
+
+  
+## Properties Supported
+
+| Property         | Type                                    | Description                                                                                         |
+| ---------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| platform\_id     | string                                  | Accounting platform's ID for the bill                                                               |
+| account\_id      | string                                  | The accounting platform's unique ID of the account associated with the bill                         |
+| contact\_id      | string                                  | The accounting platform's unique ID of the contact associated with this bill                        |
+| document\_number | string                                  | Reference number for the bill                                                                       |
+| posted\_date     | date                                    | Date of creation of the bill                                                                        |
+| due\_date        | date                                    | The due date for the bill                                                                           |
+| currency         | string                                  | The ISO-4217 currency code                                                                          |
+| currency\_rate   | float                                   | Rate between the currency of the payment and the base currency                                      |
+| status           | enum                                    | The status of the bill. Values are: DRAFT, SUBMITTED, PARTIALLY\_PAID, PAID, OVERDUE, VOID, UNKNOWN |
+| total\_amount    | float                                   | Total amount of the Bill                                                                            |
+| sub\_total       | float                                   | Total pre tax amount of the Bill                                                                    |
+| total\_discount  | float                                   | Total discount amount levied on the Bill                                                            |
+| tax\_amount      | float                                   | Total tax amount levied on the bill                                                                 |
+| amount\_due      | float                                   | Outstanding amount to be paid for the Bill                                                          |
+| line\_items      | [Line Item](/docs/line-items)           | Array of Bill Line items associated with the bill                                                   |
+| payments         | [Bill Payment](/docs/bill-payments)     | Array of Bill Payments associated with the bill                                                     |
+| account          | [Account](/docs/accounts)               | The account to which this bill belongs                                                              |
+| contact          | [Contact](/docs/contacts)               | The contact who receives this bill                                                                  |
+| purchase\_orders | [Purchase Order](/docs/purchase-orders) | Array of Purchase Orders associated with the bill                                                   |
+| documents        | [Document](/docs/documents)             | Array of Documents associated with the bill                                                         |
+| updated\_at      | date                                    | The date at which the information was updated on the accounting platform                            |

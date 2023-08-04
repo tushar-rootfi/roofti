@@ -1,0 +1,27 @@
+---
+title: "Asynchronous Writes"
+description: "Easily push several records to your customers accounting platform using asynchronous writes"
+---
+
+We support the ability to push data to your customers accounting platform in a synchronous and asynchronous manner. We also support the ability to write multiple objects of the same type in one request using our Batch Writes Feature.
+
+  
+By default our write APIs are synchronous. You can find our APIs in our [Postman Collection](/docs/rootfi-postman-collection). 
+
+**To write data synchronously you need to pass in a query parameter `async=true` in the request.** '
+
+We will return an `upload_job_id` which you can use to query the status of the write. Alternatively, you can also [configure a webhook](/docs/webhooks) of type "Sync Complete" to receive the status of the write.
+
+The Postman has examples for all the different integrations we support as there are several small differences in the fields we support for the various integrations. 
+
+You can see these differences in our [coverage tool](https://rootfi.dev/coverage)
+
+  
+### Asynchronous Batch Writes
+
+To send data as a batch, simply send the `data` as an array of objects.  
+We group all the writes in a single `upload_job_id` that is returned in the response. 
+
+**Note we only support batch writing data of the same data model**
+
+For example: To write 10 invoices and 10 bills, you can write 10 invoices using our invoices API and then write 10 bills using our bills API. You cannot write 10 invoices and 10 bills using one api.

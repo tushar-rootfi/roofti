@@ -1,0 +1,22 @@
+---
+title: "Contact Person"
+---
+
+**The Contact Person Sub Data Model** is designed to efficiently represent and manage contact person information related to customers in various accounting platforms.
+
+As a sub data model, it is always referenced by another data model. For this data model it is always linked to the [contacts data model](/docs/contacts). This structure allows for efficient organisation and retrieval of contact details, ensuring a streamlined approach to handling contact person related data.
+
+* Unified contact representation: The model standardises data across different accounting platforms, simplifying access and management of contact information.
+* Linked to [contacts](/docs/contacts): Each contact person entry is connected to a specific contact, with the `contact_id` property enabling easy cross-referencing and organisation.
+* Support for phone number data: The phone\_numbers property links to a dedicated phone number data model, allowing for more structured and detailed storage of contact phone numbers.
+
+  
+## Properties Supported
+
+| Property       | Type                                | Description                                               |
+| -------------- | ----------------------------------- | --------------------------------------------------------- |
+| platform\_id   | string                              | The accounting Platform's id for the contact              |
+| contact\_id    | string                              | The platform ID of the Customer this contact is linked to |
+| name           | string                              | The name of the Contact                                   |
+| email          | string                              | The email id of the Contact                               |
+| phone\_numbers | [Phone Numbers](/docs/phone-number) | The phone numbers of the contact                          |

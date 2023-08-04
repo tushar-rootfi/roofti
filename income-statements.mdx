@@ -1,0 +1,34 @@
+---
+title: "Income Statements"
+description: "An income statement is a financial report that shows a business's revenue, expenses, and net income or loss over a specific period of time. In an accounting platform, an income statement is typically generated automatically based on the financial transactions that have been recorded in the system."
+---
+
+| Property                 | Type                                          | Description                                                    |
+| ------------------------ | --------------------------------------------- | -------------------------------------------------------------- |
+| platform\_id             | string                                        | The accounting Platform's id for the income statement          |
+| period\_start\_date      | date                                          | start date of the income statement report                      |
+| period\_end\_date        | date                                          | end date of the income statement report                        |
+| currency                 | string                                        | currency of the income statement                               |
+| revenue                  | [LineItem](/docs/income-statements#line-item) | line\_items for revenue of income statement report             |
+| cost\_of\_goods\_sold    | [LineItem](/docs/income-statements#line-item) | line\_items for revenue of income statement report             |
+| gross\_profit            | float                                         | gross profit of the income statement report                    |
+| operating\_expenses      | [LineItem](/docs/income-statements#line-item) | line\_items for operating\_expenses of income statement report |
+| operating\_profit        | float                                         | operating profit of the income statement report                |
+| non\_operating\_revenue  | float                                         | non operating revenue of the income statement report           |
+| non\_operating\_expenses | float                                         | non operating expense of the income statement report           |
+| earnings\_before\_taxes  | float                                         | earnings before taxes of the income statement report           |
+| taxes                    | [LineItem](/docs/income-statements#line-item) | line\_items for taxes of income statement report               |
+| net\_profit              | float                                         | net profit of the income statement report                      |
+
+## Line Item
+
+**The Line Item**  is a complementary model providing additional information about Income Statement.
+
+* fields of line item are:
+
+| Property    | Type                                          | Description                                  |
+| ----------- | --------------------------------------------- | -------------------------------------------- |
+| account\_id | string                                        | the accounting Platform's id for the account |
+| value       | float                                         | value for the account                        |
+| name        | string                                        | the name of the account                      |
+| line\_items | [LineItem](/docs/income-statements#line-item) | line\_items for the account                  |

@@ -1,0 +1,29 @@
+---
+title: "Contacts"
+description: "A contact is an individual or company that buys or sells goods or services from a business. Commonly referred  to a customer on a corresponding invoice or a vendor for a bill"
+---
+
+**The Contacts Data Model** simplifies the handling and retrieval of contact-related information across various accounting platforms. 
+
+* Unified contact properties: The model unifies essential contact details, such as name, contact person, currency, and tax number, enabling easier access and management of contact data from different platforms.
+* Comprehensive contact information: Contacts can include associated data like [contact persons](/docs/contact-person), [phone numbers](/docs/phone-number), [addresses](/docs/address), and [external links](/docs/external-link) for a more detailed representation of each contact.
+* Status tracking: The model supports tracking the status of each contact, with values like `ACTIVE`, `ARCHIVED`, and `UNKNOWN`, facilitating better organisation and reporting.
+
+  
+## Properties Supported
+
+| Property             | Type                                   | Description                                                       |
+| -------------------- | -------------------------------------- | ----------------------------------------------------------------- |
+| platform\_id         | string                                 | The accounting platform's ID for the contact                      |
+| name                 | string                                 | Name of the customer on the accounting platform                   |
+| contact\_name        | string                                 | Name of the contact person for the contact                        |
+| contact\_type        | enum                                   | The type of customer. Values are either CUSTOMER or VENDOR        |
+| currency             | string                                 | The ISO-4217 currency code                                        |
+| tax\_number          | string                                 | Contact's tax number                                              |
+| registration\_number | string                                 | Contact's identifying number                                      |
+| status               | enum                                   | The status of the customer. Values are: ACTIVE, ARCHIVED, UNKNOWN |
+| contact\_persons     | [Contact Person](/docs/contact-person) | List of contacts stored for the contact.                          |
+| external\_links      | [External Link](/docs/external-link)   | The external links associated with the contact                    |
+| phone\_numbers       | [Phone Number](/docs/phone-number)     | The phone numbers associated with the contact                     |
+| addresses            | [Address](/docs/address)               | The addresses associated with the contact                         |
+| updated\_at          | date                                   | The last ISO 8601 timestamp at which the data was updated         |

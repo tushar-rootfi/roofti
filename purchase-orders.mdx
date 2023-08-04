@@ -1,0 +1,35 @@
+---
+title: "Purchase Orders"
+description: "A record of goods or services purchased from a vendor"
+---
+
+**The Purchase Orders Data Model** simplifies the management and access of purchase order information across various accounting platforms. 
+
+* Unified purchase order properties: The model consolidates essential details, such as contact information, document number, dates, description, payment mode, and currency, to provide a complete view of each purchase order.
+* Financial calculations: The model includes properties for tax amount, discounts, subtotals, and total amounts, enabling accurate financial calculations and reporting.
+* Association with bills: The bills property links purchase orders to their associated bills, facilitating the tracking and management of related financial transactions.
+
+  
+## Properties Supported
+
+| Property         | Type                          | Description                                                                                                   |
+| ---------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| platform\_id     | string                        | Accounting platform's ID for the purchase order                                                               |
+| contact\_id      | string                        | The accounting platform's unique ID of the contact associated with this purchase order                        |
+| document\_number | string                        | Reference number for the purchase order                                                                       |
+| posted\_date     | string                        | Date of creation of the purchase order                                                                        |
+| delivery\_date   | string                        | The delivery date for the purchase order                                                                      |
+| description      | string                        | Description of the purchase order                                                                             |
+| payment\_mode    | string                        | The payment mode from which the payment was made                                                              |
+| currency         | string                        | The ISO-4217 currency code                                                                                    |
+| currency\_rate   | float                         | Rate between the currency of the payment and the base currency                                                |
+| status           | enum                          | The status of the purchase order. Values are: DRAFT, SUBMITTED, PARTIALLY\_PAID, PAID, OVERDUE, VOID, UNKNOWN |
+| total\_discount  | float                         | Total value of discounts applied to the purchase order                                                        |
+| tax\_amount      | float                         | Total tax amount levied on the purchase order                                                                 |
+| sub\_total       | float                         | Total pre tax value of the purchase order                                                                     |
+| total\_amount    | float                         | Total value of the purchase order                                                                             |
+| line\_items      | [Line Item](/docs/line-items) | Array of Purchase Order Line items associated with the purchase order                                         |
+| bills            | [Bill](/docs/bills)           | Array of Bills associated with the purchase order                                                             |
+| addresses        | [Address](/docs/address)      | Array of addresses associated with this purchase order                                                        |
+| contact          | [Contact](/docs/contacts)     | The contact associated with this purchase order                                                               |
+| updated\_at      | string                        | The date at which the information was updated on the accounting platform                                      |
