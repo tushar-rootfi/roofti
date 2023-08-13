@@ -1,14 +1,14 @@
 {
-  "name": "Roofti",
+  "name": "Rootfi",
   "logo": {
     "light": "/logo/light.png",
     "dark": "/logo/dark.png"
   },
   "favicon": "/favicon.png",
   "colors": {
-    "primary": "#5344E5",
-    "light": "#7F73F4",
-    "dark": "#5344E5"
+    "primary": "#0E0E0E",
+    "light": "#FAFAFA",
+    "dark": "#0E0E0E"
   },
   "topbarCtaButton": {
     "name": "Sign Up",
@@ -35,7 +35,13 @@
   "navigation": [
     {
       "group": "Getting Started",
-      "pages": ["introduction"]
+      "pages": [
+        "introduction",
+        "glossary-key-terms",
+        "supported-platforms",
+        "rootfi-postman-collection",
+        "graphql-playground"
+      ]
     }
   ],
   "footerSocials": {
