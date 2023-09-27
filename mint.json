@@ -39,7 +39,11 @@
     {
         "name": "API Reference",
         "url": "api-reference"
-    }
+    },
+    {
+      "name": "Changelog",
+      "url": "changelog"
+  }
 ],
   "navigation": [
     {
@@ -396,6 +400,12 @@
             "api-reference/income-statements/your-get-endpoint"
           ]
         }
+      ]
+    },
+    {
+      "group": "Changelog",
+      "pages": [
+        "changelog/july-31"
       ]
     }
   ],
