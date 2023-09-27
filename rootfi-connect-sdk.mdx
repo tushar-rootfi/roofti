@@ -15,10 +15,8 @@ RootFi supports white labelling the onboarding process through the SDK. Users ca
 
 1. Import the source script in the head tag. `<script src="https://integrate.rootfi.dev/sdk.js"></script>`
 2. Load the RootFi SDK on page load by calling `RootfiLink.initialize()`.
-
-JavaScript
-
-`RootfiLink.initialize({
+```java JavaScript
+RootfiLink.initialize({
     linkToken: "", // invite_link_id returned from api
     onSuccess: () => {
        // will be called, once connection is successful
@@ -30,16 +28,15 @@ JavaScript
        // Will be called when user clicks close button on SDK.
     },
  });
-`
+```
 
 1. Call `RootfiLink.openLink();` to open the SDK. Make sure you call this function onReady is called back on initialisation.
 2. Call `RootfiLink.closeLink();` to close the SDK. You can use this method to close the SDK in **onSuccess** and **onExit** Callback;
 
 Below is the HTML snippet of integrating SDK
 
-h
-
-`<html>
+```html HTML
+<html>
   <head>
     <script src="https://integrate.rootfi.dev/sdk.js" type="text/javascript"></script>
     <script>
@@ -70,4 +67,4 @@ h
     <p><button onclick="loadRootFi()">Open Rootfi SDK</button></p>  
     </body>  
 </html>
-`
+```

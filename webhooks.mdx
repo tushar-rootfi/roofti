@@ -1,9 +1,7 @@
 ---
 title: "Webhooks"
+description: "The RootFi Platform provides support for webhooks, allowing you to sync data to your systems in real-time. When data is synced from the accounting platform, the webhook is triggered immediately. To configure a webhook, please follow the steps outlined below."
 ---
-
-The RootFi Platform provides support for webhooks, allowing you to sync data to your systems in real-time. When data is synced from the accounting platform, the webhook is triggered immediately. To configure a webhook, please follow the steps outlined below.
-
   
 ### How to Configure?
 
@@ -40,19 +38,17 @@ You can select the data models you want this webhook to fire for. You can select
 
 ### Developer Reference
 
-> 📘
-> 
-> Webhooks are retried
-> 
-> Webhooks will be retried 3 times with an exponential delay. So, even if your server is busy due to large number of requests, there's no worry of loosing data 😃.
+<Note>
+    **Webhooks are retried**
 
-Webhooks will be triggered with a **POST** request in the following body:
+    Webhooks will be retried 3 times with an exponential delay. So, even if your server is busy due to large number of requests, there's no worry of loosing data 😃.
 
+    Webhooks will be triggered with a **POST** request in the following body:
+</Note>
 #### Data Model Changes
 
-JSON
-
-`{
+```JSON JSON
+{
     "webhook_type": "DATA_MODEL_CHANGES",
     "company_id": 285,
     "integration_type": "ZOHO_BOOKS",
@@ -61,13 +57,12 @@ JSON
     "data": [],
     "created_at": "2023-01-01T00:00:00.000Z"
 }
-`
+```
 
 #### Sync Completed
 
-JSON
-
-`{
+```json JSON
+{
     "webhook_type": "SYNC_COMPLETED",
     "company_id": 285,
     "integration_type": "ZOHO_BOOKS",
@@ -84,16 +79,15 @@ JSON
     },
     "created_at": "created_at"
 }
-`
+```
 
 #### Company Linked
 
-JSON
-
-`{
+```json JSON
+{
     "webhook_type": "COMPANY_LINKED",
     "company_id": 285,
     "integration_type": "ZOHO_BOOKS",
     "created_at": "2023-01-01T00:00:00.000Z"
 }
-`
+```

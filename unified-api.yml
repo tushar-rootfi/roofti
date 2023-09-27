@@ -1,0 +1,1140 @@
+openapi: 3.0.0
+info:
+  title: Unified API
+  version: 1.0.0
+  description: Unified API
+servers:
+  - url: 'https://integrate.rootfi.dev/api/v2'
+    description: Production Server
+components:
+  securitySchemes:
+    api_key:
+      name: api_key
+      type: apiKey
+      in: header
+  schemas:
+    company-data:
+      type: object
+      x-examples:
+        Example 1:
+          rootfi_id: 254
+          rootfi_created_at: '2023-04-05T10:29:18.906Z'
+          rootfi_updated_at: '2023-04-05T10:29:18.906Z'
+          rootfi_organisation_id: 3
+          name: Zoho New Test
+          sync_enabled: true
+          InviteLinks:
+            invite_link_id: b647a796-3ac5-41ed-81f0-cc7dbb8f8c8b
+          Connections:
+            - status: HEALTHY
+              integration_type: ZOHO_BOOKS
+              sync_status: IDLE
+              last_synced: '2023-04-21T06:58:37.656Z'
+              rate_limits:
+                max_rate_limit: 1000
+                resets_in_date: '2023-04-21T18:29:59.712Z'
+                remaining_rate_limit: 968
+              tally_last_active_at: null
+      properties:
+        rootfi_id:
+          type: integer
+        rootfi_created_at:
+          type: string
+        rootfi_updated_at:
+          type: string
+        rootfi_organisation_id:
+          type: integer
+        name:
+          type: string
+        sync_enabled:
+          type: boolean
+        InviteLinks:
+          type: object
+          properties:
+            invite_link_id:
+              type: string
+        Connections:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+              integration_type:
+                type: string
+              sync_status:
+                type: string
+              last_synced:
+                type: string
+              rate_limits:
+                nullable: true
+                type: object
+                properties:
+                  max_rate_limit:
+                    type: integer
+                  resets_in_date:
+                    type: string
+                  remaining_rate_limit:
+                    type: integer
+              tally_last_active_at:
+                type: string
+                format: date-time
+                nullable: true
+      title: Company Data
+    invitelink-data:
+      type: object
+      x-examples:
+        Example 1:
+          rootfi_id: 586
+          rootfi_created_at: '2023-05-19T10:00:45.284Z'
+          rootfi_updated_at: '2023-05-19T10:00:58.817Z'
+          rootfi_company_id: 356
+          rootfi_organisation_id: 3
+          metadata: null
+          invite_link_id: 3c76dddc-4af4-410f-b4e2-d876a576499b
+          integrations: []
+          Companies:
+            rootfi_id: 356
+            rootfi_created_at: '2023-05-19T10:00:58.821Z'
+            rootfi_updated_at: '2023-05-19T10:00:58.821Z'
+            rootfi_organisation_id: 3
+            name: netsuite 3
+            sync_enabled: true
+            Connections:
+              - rootfi_id: 356_NETSUITE
+                integration_type: NETSUITE
+      properties:
+        rootfi_id:
+          type: integer
+        rootfi_created_at:
+          type: string
+        rootfi_updated_at:
+          type: string
+        rootfi_company_id:
+          type: integer
+        rootfi_organisation_id:
+          type: integer
+        metadata:
+          nullable: true
+        invite_link_id:
+          type: string
+        integrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Integrations'
+        Companies:
+          type: object
+          nullable: true
+          properties:
+            rootfi_id:
+              type: integer
+            rootfi_created_at:
+              type: string
+            rootfi_updated_at:
+              type: string
+            rootfi_organisation_id:
+              type: integer
+            name:
+              type: string
+            sync_enabled:
+              type: boolean
+            Connections:
+              type: array
+              items:
+                type: object
+                properties:
+                  rootfi_id:
+                    type: string
+                  integration_type:
+                    type: string
+      title: Invite Link Data
+    base-response:
+      title: base-response
+      type: object
+      properties:
+        request_timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        response_timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        request_id:
+          type: string
+          format: uuid
+          readOnly: true
+      description: ''
+    integrations-data:
+      type: object
+      properties:
+        integration_type:
+          type: string
+        rootfi_id:
+          type: integer
+        client_id:
+          type: string
+        client_secret:
+          type: string
+        is_disabled:
+          type: boolean
+        is_rootfi_identity:
+          type: boolean
+        count:
+          type: integer
+      x-examples:
+        Example 1:
+          integration_type: MYOB_BUSINESS
+          rootfi_id: 63
+          client_id: 3383387a-0a53-4b4c-b9c0-98eb48ca60f9
+          client_secret: BQz2xdegU12Cr5EbTcyOI22c
+          is_disabled: false
+          is_rootfi_identity: false
+          count: 3
+      title: Integrations Data
+    org-data:
+      type: object
+      x-examples:
+        Example 1:
+          rootfi_id: 3
+          name: RootFi
+          Integrations:
+            - rootfi_id: 100
+              integration_type: NETSUITE
+              is_disabled: false
+            - rootfi_id: 6
+              integration_type: SAGE_ZA_CLOUD_ACCOUNTING
+              is_disabled: false
+            - rootfi_id: 72
+              integration_type: ODOO_ACCOUNTING
+              is_disabled: false
+            - rootfi_id: 8
+              integration_type: XERO
+              is_disabled: false
+            - rootfi_id: 11
+              integration_type: MS_DYNAMICS_365
+              is_disabled: false
+            - rootfi_id: 67
+              integration_type: WAVE
+              is_disabled: false
+            - rootfi_id: 70
+              integration_type: QUICKBOOKS
+              is_disabled: false
+            - rootfi_id: 7
+              integration_type: ZOHO_BOOKS
+              is_disabled: false
+            - rootfi_id: 79
+              integration_type: SHOPIFY
+              is_disabled: false
+            - rootfi_id: 80
+              integration_type: FLIPKART
+              is_disabled: false
+            - rootfi_id: 4
+              integration_type: TALLY
+              is_disabled: false
+            - rootfi_id: 9
+              integration_type: SAGE_CLOUD_ACCOUNTING
+              is_disabled: false
+            - rootfi_id: 10
+              integration_type: QUICKBOOKS_SANDBOX
+              is_disabled: false
+            - rootfi_id: 63
+              integration_type: MYOB_BUSINESS
+              is_disabled: false
+          sync_config:
+            - enabled: true
+              interval: 4
+              frequency: MONTHLY
+              data_model: ACCOUNTS
+              initial_fetch: true
+            - enabled: true
+              interval: 1
+              frequency: WEEKLY
+              data_model: BALANCE_SHEET
+              initial_fetch: true
+            - enabled: true
+              interval: 2
+              frequency: WEEKLY
+              data_model: BANK_ACCOUNTS
+              initial_fetch: true
+            - enabled: true
+              interval: 2
+              frequency: WEEKLY
+              data_model: BANK_TRANSACTIONS
+              initial_fetch: true
+            - enabled: true
+              interval: 2
+              frequency: WEEKLY
+              data_model: BILLS
+              initial_fetch: true
+            - enabled: true
+              interval: 2
+              frequency: WEEKLY
+              data_model: BILL_PAYMENTS
+              initial_fetch: true
+            - enabled: true
+              interval: 2
+              frequency: WEEKLY
+              data_model: BILL_CREDIT_NOTES
+              initial_fetch: true
+            - enabled: true
+              interval: 1
+              frequency: WEEKLY
+              data_model: CONTACTS
+              initial_fetch: true
+            - enabled: true
+              interval: 2
+              frequency: WEEKLY
+              data_model: COMPANY_INFO
+              initial_fetch: true
+            - enabled: true
+              interval: 2
+              frequency: WEEKLY
+              data_model: EXPENSES
+              initial_fetch: true
+            - enabled: true
+              interval: 1
+              frequency: WEEKLY
+              data_model: INCOME_STATEMENT
+              initial_fetch: true
+            - enabled: true
+              interval: 1
+              frequency: WEEKLY
+              data_model: INVOICES
+              initial_fetch: true
+            - enabled: true
+              interval: 2
+              frequency: WEEKLY
+              data_model: INVOICE_PAYMENTS
+              initial_fetch: true
+            - enabled: true
+              interval: 2
+              frequency: WEEKLY
+              data_model: INVOICE_CREDIT_NOTES
+              initial_fetch: true
+            - enabled: true
+              interval: 1
+              frequency: WEEKLY
+              data_model: ITEMS
+              initial_fetch: true
+            - enabled: true
+              interval: 2
+              frequency: WEEKLY
+              data_model: JOURNAL_ENTRIES
+              initial_fetch: true
+            - enabled: true
+              interval: 2
+              frequency: WEEKLY
+              data_model: PURCHASE_ORDERS
+              initial_fetch: true
+            - enabled: true
+              interval: 1
+              frequency: WEEKLY
+              data_model: SALES_ORDERS
+              initial_fetch: true
+            - enabled: true
+              interval: 2
+              frequency: WEEKLY
+              data_model: TAX_RATES
+              initial_fetch: true
+            - enabled: true
+              interval: 1
+              frequency: WEEKLY
+              data_model: TRACKING_CATEGORIES
+              initial_fetch: true
+            - enabled: false
+              interval: 2
+              frequency: WEEKLY
+              data_model: DOCUMENTS
+              initial_fetch: true
+            - enabled: true
+              interval: 1
+              frequency: WEEKLY
+              data_model: CASH_FLOW_STATEMENT
+              initial_fetch: true
+      properties:
+        rootfi_id:
+          type: integer
+        name:
+          type: string
+        Integrations:
+          type: array
+          items:
+            type: object
+            properties:
+              rootfi_id:
+                type: integer
+              integration_type:
+                $ref: '#/components/schemas/Integrations'
+              is_disabled:
+                type: boolean
+        sync_config:
+          type: array
+          items:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+              interval:
+                type: integer
+              frequency:
+                type: string
+              data_model:
+                $ref: '#/components/schemas/Datamodels'
+              initial_fetch:
+                type: boolean
+      title: Organization Data
+    webhook-data:
+      type: object
+      x-examples:
+        Example 1:
+          id: hF0oEa7AfDaGq5H08RLW
+          headers: {}
+          operations: []
+          data_models: []
+          org_id: 3
+          name: on company linked
+          created_at: '2023-04-24T08:00:08.821Z'
+          type: COMPANY_LINKED
+          url: 'https://webhook.site/a49a381f-78c5-4f3f-a789-f5f14f450d7c'
+        Example 2:
+          id: lp2b6sASOkDelSXl4UEW
+          headers:
+            api_keyssss: djsdhsj
+          operations:
+            - CREATE
+            - UPDATE
+            - DELETE
+          org_id: 3
+          name: Test
+          created_at: '2023-05-15T04:50:49.048Z'
+          type: DATA_MODEL_CHANGES
+          url: 'https://webhook.site/2f2884fd-f3d3-4ce5-8a89-cbaaa70d1add'
+      properties:
+        id:
+          type: string
+        headers:
+          type: object
+        operations:
+          type: array
+          items:
+            type: string
+            enum:
+              - CREATE
+              - UPDATE
+              - DELETE
+        data_models:
+          type: array
+          items:
+            $ref: '#/components/schemas/Datamodels'
+        org_id:
+          type: integer
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        type:
+          $ref: '#/components/schemas/WebhookTypes'
+        url:
+          type: string
+    Integrations:
+      title: Integrations
+      x-stoplight:
+        id: ua2y0aq4wrvxu
+      type: string
+      enum:
+        - ZOHO_BOOKS
+        - QUICKBOOKS_SANDBOX
+        - QUICKBOOKS
+        - XERO
+        - TALLY
+        - SAGE_CLOUD_ACCOUNTING
+        - MS_DYNAMICS_365
+        - SAGE_ZA_CLOUD_ACCOUNTING
+        - MYOB_BUSINESS
+        - WAVE
+        - ODOO_ACCOUNTING
+        - NETSUITE
+      description: ''
+    Datamodels:
+      title: Datamodels
+      x-stoplight:
+        id: j0zsvjgvmtgmc
+      type: string
+      enum:
+        - ACCOUNTS
+        - BANK_ACCOUNTS
+        - BILLS
+        - BILL_PAYMENTS
+        - COMPANY_INFO
+        - CONTACTS
+        - BILL_CREDIT_NOTES
+        - INVOICE_CREDIT_NOTES
+        - DOCUMENTS
+        - EXPENSES
+        - INVOICES
+        - INVOICE_PAYMENTS
+        - ITEMS
+        - TAX_RATES
+        - JOURNAL_ENTRIES
+        - BANK_TRANSACTIONS
+        - JOURNAL_LINES
+        - PURCHASE_ORDERS
+        - SALES_ORDERS
+        - INCOME_STATEMENT
+        - BALANCE_SHEET
+        - TRACKING_CATEGORIES
+        - CASH_FLOW_STATEMENT
+    WebhookTypes:
+      title: WebhookTypes
+      x-stoplight:
+        id: jy7x6ceik30eb
+      type: string
+      enum:
+        - SYNC_COMPLETED
+        - CONNECTION_CHANGED
+        - DATA_MODEL_CHANGES
+  responses:
+    company:
+      description: ''
+      content:
+        application/json:
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/company-data'
+              - $ref: '#/components/schemas/base-response'
+    success:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        enum:
+                          - success
+              - $ref: '#/components/schemas/base-response'
+    invite_link:
+      description: ''
+      content:
+        application/json:
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/invitelink-data'
+              - $ref: '#/components/schemas/base-response'
+    integration:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/integrations-data'
+              - $ref: '#/components/schemas/base-response'
+    webhook:
+      description: ''
+      content:
+        application/json:
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/webhook-data'
+              - $ref: '#/components/schemas/base-response'
+  requestBodies:
+    create_invitelink:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              company_name:
+                type: string
+                x-stoplight:
+                  id: a32z7kemszdhg
+              integrations:
+                type: array
+                x-stoplight:
+                  id: iutwt3iqw2y4p
+                items:
+                  $ref: '#/components/schemas/Integrations'
+          examples:
+            Example 1:
+              value:
+                company_name: string
+                integrations:
+                  - ZOHO_BOOKS
+        json:
+          schema:
+            type: object
+            properties: {}
+    create_integration:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              client_id:
+                type: string
+                x-stoplight:
+                  id: qrwb3kf013ueq
+              client_secret:
+                type: string
+                x-stoplight:
+                  id: zvc6p131eeitd
+              integration_type:
+                $ref: '#/components/schemas/Integrations'
+              is_disabled:
+                type: boolean
+                x-stoplight:
+                  id: 3mpupvzidqbqr
+    create_webhook:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                x-stoplight:
+                  id: wrf41ejvgf1dt
+              url:
+                type: string
+                x-stoplight:
+                  id: ninhvo8q0bnj3
+              type:
+                $ref: '#/components/schemas/WebhookTypes'
+              operations:
+                type: string
+                x-stoplight:
+                  id: kukzzghryg13f
+                enum:
+                  - CREATE
+                  - UPDATE
+                  - DELETE
+              headers:
+                type: object
+                x-stoplight:
+                  id: 94z9f13c4qnih
+              data_models:
+                x-stoplight:
+                  id: 0xh9bxjlax9sw
+                type: array
+                items:
+                  $ref: '#/components/schemas/Datamodels'
+  examples:
+    test:
+      value:
+        description: Example shared example
+        type: object
+        properties:
+          id:
+            type: string
+        required:
+          - id
+security:
+  - api_key:
+      - api_key
+tags:
+  - name: Companies
+  - name: Invite Links
+  - name: Integrations
+  - name: Sync
+  - name: Accounting Data Models
+  - name: Accounting Data Models > Contacts
+  - name: Accounting Data Models > Invoices
+  - name: Accounting Data Models > Bills
+  - name: Accounting Data Models > Invoice Payments
+  - name: Accounting Data Models > Bill Payments
+  - name: Accounting Data Models > Documents
+  - name: Accounting Data Models > Accounts
+  - name: Accounting Data Models > Bank Accounts
+  - name: Accounting Data Models > Bank Transaction
+  - name: Accounting Data Models > Expenses
+  - name: Accounting Data Models > TaxRates
+  - name: Accounting Data Models > Items
+  - name: Accounting Data Models > Journal Entries
+  - name: Accounting Data Models > Compay Info
+  - name: Accounting Data Models > Invoice Credit Notes
+  - name: Accounting Data Models > Bill Credit Notes
+  - name: Webhooks
+  - name: Passthrough
+paths:
+  /company/all:
+    get:
+      tags:
+        - Companies
+      summary: Get All Companies
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: 10
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          example: 0
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - x-stoplight:
+                      id: 6bqsk6lew24df
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: btv2h6wn9pqlz
+                        items:
+                          $ref: '#/components/schemas/company-data'
+                  - $ref: '#/components/schemas/base-response'
+      operationId: get-all-companies
+      x-stoplight:
+        id: rumx9gh1c8jwf
+    parameters: []
+  '/company/{company_id}':
+    get:
+      tags:
+        - Companies
+      summary: Get Company
+      parameters: []
+      responses:
+        '200':
+          $ref: '#/components/responses/company'
+      operationId: get-company
+      description: ''
+    put:
+      summary: Edit Company
+      operationId: edit-company
+      responses:
+        '200':
+          $ref: '#/components/responses/company'
+      parameters: []
+      tags:
+        - Companies
+    parameters:
+      - schema:
+          type: string
+        name: company_id
+        in: path
+        required: true
+        description: RootFi company ID
+    delete:
+      summary: Delete Company
+      operationId: delete-company
+      responses:
+        '200':
+          $ref: '#/components/responses/success'
+      tags:
+        - Companies
+  /invite_link:
+    get:
+      tags:
+        - Invite Links
+      summary: Get All Invite Links
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: 10
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          example: 0
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: v014ipmaelmy6
+                        items:
+                          $ref: '#/components/schemas/invitelink-data'
+                  - $ref: '#/components/schemas/base-response'
+      operationId: get-all-invite_link
+      description: ''
+    post:
+      summary: Create Invite Link
+      operationId: create-invite_link
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                x-examples:
+                  Example 1:
+                    data:
+                      invite_link: bfd64862-9364-49ef-a983-f4e487eea920
+                      invite_link_data:
+                        rootfi_id: 588
+                        rootfi_created_at: '2023-05-22T10:57:13.225Z'
+                        rootfi_updated_at: '2023-05-22T10:57:13.225Z'
+                        rootfi_company_id: 357
+                        rootfi_organisation_id: 3
+                        metadata: null
+                        invite_link_id: bfd64862-9364-49ef-a983-f4e487eea920
+                        integrations: []
+                    request_timestamp: '2023-05-22T10:57:12.795Z'
+                    response_timestamp: '2023-05-22T10:57:13.532Z'
+                    request_id: b7d4857d-6de2-4424-9066-0544aa5cc16b
+                allOf:
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          invite_link:
+                            type: string
+                          invite_link_data:
+                            type: object
+                            properties:
+                              rootfi_id:
+                                type: integer
+                              rootfi_created_at:
+                                type: string
+                              rootfi_updated_at:
+                                type: string
+                              rootfi_company_id:
+                                type: integer
+                              rootfi_organisation_id:
+                                type: integer
+                              metadata:
+                                nullable: true
+                              invite_link_id:
+                                type: string
+                              integrations:
+                                type: array
+                                items:
+                                  $ref: '#/components/schemas/Integrations'
+                  - $ref: '#/components/schemas/base-response'
+      requestBody:
+        $ref: '#/components/requestBodies/create_invitelink'
+      tags:
+        - Invite Links
+      description: |-
+        An invite link is url which can be sent to the customer for connecting their Accounting platform.
+
+        - **company_name:** Company Name can be passed while creating an invite Link. If not, customer have to enter it in the onboarding flow.
+        - **integrations:** To allow customer to connect only specific integrations, you can pass the integrations which you want to support.
+  '/invite_link/{invite_link_id}':
+    get:
+      tags:
+        - Invite Links
+      summary: Get Invite Link
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      data:
+                        x-stoplight:
+                          id: daf161tcjj21n
+                        allOf:
+                          - $ref: '#/components/schemas/invitelink-data'
+                          - type: object
+                            x-stoplight:
+                              id: 8d9rcv3xfte2z
+                            properties:
+                              Organisation:
+                                $ref: '#/components/schemas/org-data'
+                  - $ref: '#/components/schemas/base-response'
+      operationId: get-invite_link
+    delete:
+      summary: Delete Invite Link
+      operationId: delete-invite_link
+      responses:
+        '200':
+          $ref: '#/components/responses/success'
+      tags:
+        - Invite Links
+    parameters:
+      - schema:
+          type: string
+        name: invite_link_id
+        in: path
+        required: true
+  /integrations:
+    get:
+      tags:
+        - Integrations
+      summary: Get All Integrations
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: r297cbtua37bk
+                        items:
+                          $ref: '#/components/schemas/integrations-data'
+                  - $ref: '#/components/schemas/base-response'
+      operationId: get-all-integrations
+    post:
+      summary: Upsert Integrations
+      operationId: upsert-integrations
+      responses:
+        '200':
+          $ref: '#/components/responses/integration'
+      requestBody:
+        $ref: '#/components/requestBodies/create_integration'
+      tags:
+        - Integrations
+  '/integrations/{integration_id}':
+    get:
+      tags:
+        - Integrations
+      summary: Get Integration
+      responses:
+        '200':
+          $ref: '#/components/responses/integration'
+      operationId: get-integration
+      description: ''
+    parameters:
+      - schema:
+          type: string
+        name: integration_id
+        in: path
+        required: true
+    put:
+      summary: Edit Integration
+      operationId: edit-integration
+      responses:
+        '200':
+          $ref: '#/components/responses/integration'
+      tags:
+        - Integrations
+      requestBody:
+        $ref: '#/components/requestBodies/create_integration'
+    delete:
+      summary: Delete Integration
+      operationId: delete-integration
+      responses:
+        '200':
+          $ref: '#/components/responses/success'
+      tags:
+        - Integrations
+  /sync:
+    post:
+      tags:
+        - Sync
+      summary: Sync Data
+      description: |-
+        Sync Data API starts syncing data for a company. You can customize the syncing with the below fields.
+
+        **data_models_to_sync:** Pass all the data models which you want to perform sync. For syncing all the data models, pass null. ( We suggest performing a sync only for data models you need to not exhaust the underlying platform's rate limits ).
+
+        **full_sync:** By default, RootFi sync's the data that has been changed since the last synced time. If you want to perform a full sync, set `full_sync` to true.
+
+        `data_models_to_sync` and `integration_type` values can be found [here](https://docs.rootfi.dev/docs/enums)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                company_id: 182
+                integration_type: MYOB_BUSINESS
+                data_models_to_sync:
+                  - ACCOUNTS
+                full_sync: true
+              properties:
+                full_sync:
+                  type: boolean
+                  x-stoplight:
+                    id: wzcka57mnpxuf
+                data_models_to_sync:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Datamodels'
+                company_id:
+                  type: number
+                  x-stoplight:
+                    id: 9t27yg4xz99cf
+                integration_type:
+                  $ref: '#/components/schemas/Integrations'
+              required:
+                - company_id
+                - integration_type
+      responses:
+        '200':
+          $ref: '#/components/responses/success'
+      operationId: sync
+  /webhooks:
+    get:
+      tags:
+        - Webhooks
+      summary: Get All Webhooks
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    x-stoplight:
+                      id: 150jgp5c9rqui
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: ru2tktuxqae7l
+                        items:
+                          x-stoplight:
+                            id: 7ua7u24yqq021
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/webhook-data'
+                  - $ref: '#/components/schemas/base-response'
+      parameters:
+        - schema:
+            type: integer
+            example: 10
+          in: query
+          name: limit
+        - schema:
+            type: integer
+            example: 0
+          in: query
+          name: offset
+      operationId: get-all-webhooks
+    post:
+      summary: Create Webook
+      operationId: create-webhooks
+      responses:
+        '200':
+          $ref: '#/components/responses/webhook'
+      requestBody:
+        $ref: '#/components/requestBodies/create_webhook'
+      tags:
+        - Webhooks
+      description: 'Refer to our [Guides](https://docs.rootfi.dev/v1.0/docs/webhooks) section to know more about Webhooks.'
+  '/webhooks/{webhook_id}':
+    delete:
+      tags:
+        - Webhooks
+      summary: Delete Webhook
+      parameters:
+        - name: webhook_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/success'
+      operationId: delete-webhooks
+    parameters:
+      - schema:
+          type: string
+        name: webhook_id
+        in: path
+        required: true
+    get:
+      summary: Get Webhook
+      operationId: get-webhooks
+      responses:
+        '200':
+          $ref: '#/components/responses/webhook'
+      tags:
+        - Webhooks
+    put:
+      summary: Edit Webhook
+      operationId: edit-webhooks
+      responses:
+        '200':
+          $ref: '#/components/responses/webhook'
+      tags:
+        - Webhooks
+      requestBody:
+        $ref: '#/components/requestBodies/create_webhook'
+  /passthrough:
+    post:
+      tags:
+        - Passthrough
+      summary: Passthrough
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                Example 1:
+                  company_id: 167
+                  data:
+                    method: GET
+                    path: /bills
+                    headers: {}
+                    data: {}
+                    params: {}
+              properties:
+                company_id:
+                  type: integer
+                data:
+                  type: object
+                  properties:
+                    method:
+                      type: string
+                      enum:
+                        - GET
+                        - POST
+                        - PUT
+                        - DELETE
+                    path:
+                      type: string
+                    headers:
+                      type: object
+                    data:
+                      type: object
+                    params:
+                      type: object
+        description: ''
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+      operationId: passthrough
+      description: Passthrough request can be used to make calls directly to underlying platform while RootFi handles the authentication for you. This can be used to get data which RootFi doesn't support or realtime data from underlying platform.

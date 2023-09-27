@@ -1,0 +1,40 @@
+---
+title: "Oracle NetSuite"
+description: "Learn how to set up our NetSuite integration."
+---
+
+Integrating with Netsuite requires you to install the RootFi bundle from the Oracle NetSuite store. 
+
+Follow the below steps to install the bundle:
+
+<Note> **To follow the below steps, you need to be a NetSuite Administrator.** </Note>
+
+### Step 1: Enable Features
+
+1. Go to Setup > Company > Enable Features page to enable all the necessary features.  
+   1. Enable Token based authentication and Oauth 2.0.  
+   2. Enable Rest Web Services.  
+   3. Enable Client Suitescript and Server Suitescript.
+![](/images/63b17c4-image.png) ![](/images/df5b5d8-image.png) 
+
+![](/images/6750409-image.png)
+
+![](/images/2cd1bac-image.png)
+
+### Step 2: Install RootFi Bundle
+
+1. Go to Customisation > SuiteBundler > Search and Install Bundle.
+2. Search for RootFi Bundle with this id: **489902**.
+3. Click 'Install'.
+
+**Note:** Installation may take upto 2 minutes.
+
+![](/images/b1a186e-image.png)
+
+![](/images/3992668-image.png)
+
+### Step 3: Connecting to RootFi
+
+1. Open the Connect link and select the NetSuite Integration card.
+2. Click 'Securely Login' to authorize your NetSuite account.
+3. Once the connection is successful, your data will start syncing.

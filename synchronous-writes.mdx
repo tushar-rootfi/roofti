@@ -21,10 +21,11 @@ To send data as a batch, simply send the `data` as an array of objects.
 
 For example: To write 10 invoices and 10 bills, you can write 10 invoices using our invoices API and then write 10 bills using our bills API. You cannot write 10 invoices and 10 bills using one api. 
 
-> 📘
-> 
-> Expect higher latency using Batch Writes
-> 
-> When writing multiple objects in a single API call RootFi may only write objects serially to the accounting platform as the most of the underlying accounting platforms do not support batch writes. Thus expect higher latencies when using Synchronous Batch Writes. 
-> 
-> For this reason **we recommend using Asynchronous Batch Writes**
+<Note>
+
+    **Expect higher latency using Batch Writes**
+
+    When writing multiple objects in a single API call RootFi may only write objects serially to the accounting platform as the most of the underlying accounting platforms do not support batch writes. Thus expect higher latencies when using Synchronous Batch Writes. 
+
+    For this reason **we recommend using Asynchronous Batch Writes**
+</Note>

@@ -10,6 +10,9 @@
     "light": "#FAFAFA",
     "dark": "#0E0E0E"
   },
+  "api": {
+    "baseUrl": "https://integrate.rootfi.dev"
+  },
   "topbarCtaButton": {
     "name": "Sign Up",
     "url": "https://integrate.rootfi.dev/signup"
@@ -32,6 +35,12 @@
       "url": "https://www.rootfi.dev/security"
     }
   ],
+  "tabs": [
+    {
+        "name": "API Reference",
+        "url": "api-reference"
+    }
+],
   "navigation": [
     {
       "group": "Getting Started",
@@ -41,6 +50,352 @@
         "supported-platforms",
         "rootfi-postman-collection",
         "graphql-playground"
+      ]
+    },
+    {
+      "group": "Using our API",
+      "pages": [
+        "authentication-api-keys",
+        "webhooks",
+        "syncing-data"
+      ]
+    },
+    {
+      "group": "Data API's",
+      "pages": [
+        {
+          "group": "Writing Data",
+          "pages": [
+            "synchronous-writes",
+            "asynchronous-writes",
+            "unified-error-messages"
+          ]
+        },
+        {
+          "group": "Reading Data",
+          "pages": [
+            "reading-data",
+            "rest-apis",
+            "graphql-apis"
+          ]
+        },
+        {
+          "group": "Supplemental Data",
+          "pages": [
+            "raw-data",
+            "passing-raw-data"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Rootfi Connect",
+      "pages": [
+        "rootfi-connect-overview",
+        "rootfi-connect-link",
+        "rootfi-connect-sdk"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "pages": [
+        {
+          "group": "Accounting Integrations",
+          "pages": [
+            "accounting-integrations-overview",
+            "busy",
+            "mekari-jurnal",
+            "microsoft-dynamics-365-business-central",
+            "myob-business-integration",
+            "odoo-accounting",
+            "oracle-netsuite",
+            "quickbooks-online",
+            "sage-business-cloud-integration",
+            "sage-business-cloud-za-integration",
+            "qoyod",
+            "tally-erp-9",
+            "tally-prime-integration",
+            "wafeq",
+            "wave",
+            "xero",
+            "zoho-books-integration"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Accounting Data Models",
+      "pages": [
+        "accounting-data-model",
+        "enums",
+        {
+          "group": "Common Data Models",
+          "pages": [
+            "company-info",
+            "accounts",
+            "documents",
+            "contacts",
+            "journal-entries",
+            "tax-rates",
+            "expenses",
+            "currencies"
+          ]
+        },
+        {
+          "group": "Sub Data Models",
+          "pages": [
+            "address",
+            "contact-person",
+            "external-link",
+            "items",
+            "phone-number"
+          ]
+        },
+        {
+          "group": "Accounts Payable",
+          "pages": [
+            "bills",
+            "bill-credit-notes",
+            "bill-payments",
+            "purchase-orders"
+          ]
+        },
+        {
+          "group": "Accounts Receivable",
+          "pages": [
+            "invoices",
+            "invoice-credit-notes",
+            "invoice-payments",
+            "sales-orders"
+          ]
+        },
+        {
+          "group": "Bank Data",
+          "pages": [
+            "bank-accounts",
+            "bank-transactions"
+          ]
+        },
+        {
+          "group": "Financial Statements Data Models",
+          "pages": [
+            "income-statements",
+            "cash-flow-statements",
+            "balance-sheet"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Unified API",
+      "pages": [
+        {
+          "group": "Companies",
+          "pages": [
+            "api-reference/companies/get-all-companies",
+            "api-reference/companies/get-company",
+            "api-reference/companies/edit-company",
+            "api-reference/companies/delete-company"
+          ]
+        },
+        {
+          "group": "Invite Links",
+          "pages": [
+            "api-reference/invite-links/get-all-invite-links",
+            "api-reference/invite-links/create-invite-link",
+            "api-reference/invite-links/get-invite-link",
+            "api-reference/invite-links/delete-invite-link"
+          ]
+        },
+        {
+          "group": "Integrations",
+          "pages": [
+            "api-reference/integrations/get-all-integrations",
+            "api-reference/integrations/upsert-integrations",
+            "api-reference/integrations/get-integration",
+            "api-reference/integrations/edit-integration",
+            "api-reference/integrations/delete-integration"
+          ]
+        },
+        {
+          "group": "Sync",
+          "pages": [
+            "api-reference/sync/sync-data"
+          ]
+        },
+        {
+          "group": "Webhooks",
+          "pages": [
+            "api-reference/webhooks/get-all-webhooks",
+            "api-reference/webhooks/create-webook",
+            "api-reference/webhooks/get-webhook",
+            "api-reference/webhooks/edit-webhook",
+            "api-reference/webhooks/delete-webhook"
+          ]
+        },
+        {
+          "group": "Passthrough",
+          "pages": [
+            "api-reference/passthrough/passthrough"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Accounting",
+      "pages": [
+        {
+          "group": "Accounts",
+          "pages": [
+            "api-reference/accounts/get-all-accounts",
+            "api-reference/accounts/create-accounts"
+          ]
+        },
+        {
+          "group": "Bank Accounts",
+          "pages": [
+            "api-reference/bank-accounts/get-all-bank-accounts",
+            "api-reference/bank-accounts/create-bank-accounts"
+          ]
+        },
+        {
+          "group": "Bank Transactions",
+          "pages": [
+            "api-reference/bank-transactions/get-all-bank-transactions"
+          ]
+        },
+        {
+          "group": "Bills",
+          "pages": [
+            "api-reference/bills/get-all-bills",
+            "api-reference/bills/create-bills"
+          ]
+        },
+        {
+          "group": "Bill Payments",
+          "pages": [
+            "api-reference/bill-payments/get-all-bill-payments",
+            "api-reference/bill-payments/create-bill-payments"
+          ]
+        },
+        {
+          "group": "Bill Credit Notes",
+          "pages": [
+            "api-reference/bill-credit-notes/get-all-bill-credit-notes",
+            "api-reference/bill-credit-notes/create-bill-credit-notes"
+          ]
+        },
+        {
+          "group": "Contacts",
+          "pages": [
+            "api-reference/contacts/get-all-contacts",
+            "api-reference/contacts/create-contacts",
+            "api-reference/contacts/update-contacts"
+          ]
+        },
+        {
+          "group": "Company Info",
+          "pages": [
+            "api-reference/company-info/get-all-company-info"
+          ]
+        },
+        {
+          "group": "Documents",
+          "pages": [
+            "api-reference/documents/get-all-documents",
+            "api-reference/documents/create-documents"
+          ]
+        },
+        {
+          "group": "Expenses",
+          "pages": [
+            "api-reference/expenses/get-all-expenses",
+            "api-reference/expenses/create-expenses"
+          ]
+        },
+        {
+          "group": "Invoice Credit Notes",
+          "pages": [
+            "api-reference/invoice-credit-notes/get-all-invoice-credit-notes",
+            "api-reference/invoice-credit-notes/create-invoice-credit-notes"
+          ]
+        },
+        {
+          "group": "Invoices",
+          "pages": [
+            "api-reference/invoices/get-all-invoices",
+            "api-reference/invoices/create-invoices",
+            "api-reference/invoices/update-invoices"
+          ]
+        },
+        {
+          "group": "Invoice Payments",
+          "pages": [
+            "api-reference/invoice-payments/get-all-invoice-payments",
+            "api-reference/invoice-payments/create-invoice-payments"
+          ]
+        },
+        {
+          "group": "Items",
+          "pages": [
+            "api-reference/items/get-all-items",
+            "api-reference/items/create-items",
+            "api-reference/items/update-items"
+          ]
+        },
+        {
+          "group": "Journal Entries",
+          "pages": [
+            "api-reference/journal-entries/get-all-journal-entries",
+            "api-reference/journal-entries/create-journal-entries"
+          ]
+        },
+        {
+          "group": "Purchase Orders",
+          "pages": [
+            "api-reference/purchase-orders/get-all-purchase-orders",
+            "api-reference/purchase-orders/create-purchase-orders"
+          ]
+        },
+        {
+          "group": "Sales Orders",
+          "pages": [
+            "api-reference/sales-orders/get-all-sales-orders",
+            "api-reference/sales-orders/create-sales-orders"
+          ]
+        },
+        {
+          "group": "Tax Rates",
+          "pages": [
+            "api-reference/tax-rates/get-all-tax-rates",
+            "api-reference/tax-rates/create-tax-rates",
+            "api-reference/tax-rates/update-tax-rates"
+          ]
+        },
+        {
+          "group": "Tracking Categories",
+          "pages": [
+            "api-reference/tracking-categories/get-all-tracking-categories"
+          ]
+        },
+        {
+          "group": "Balance Sheet",
+          "pages": [
+            "api-reference/balance-sheet/get-balance-sheet"
+          ]
+        },
+        {
+          "group": "Cash Flow Statements",
+          "pages": [
+            "api-reference/cash-flow-statements/your-get-endpoint"
+          ]
+        },
+        {
+          "group": "Income Statements",
+          "pages": [
+            "api-reference/income-statements/your-get-endpoint"
+          ]
+        }
       ]
     }
   ],

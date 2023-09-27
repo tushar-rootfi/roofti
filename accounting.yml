@@ -1,0 +1,3823 @@
+swagger: '2.0'
+x-stoplight:
+  id: g0nu61mbyfi2c
+info:
+  title: Accounting
+  version: '1.0'
+  description: ''
+host: integrate.rootfi.dev
+schemes:
+  - https
+produces:
+  - application/json
+consumes:
+  - application/json
+paths:
+  /read/accounts:
+    get:
+      summary: Get All Accounts
+      tags:
+        - Accounts
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: 990n1gyfu1w26
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: sjpw1mwiy0v44
+                        items:
+                          $ref: '#/definitions/accounts-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: 2l7z0blnjhvxk
+              - $ref: '#/definitions/base-response'
+          examples:
+            Example 1:
+              data:
+                data:
+                  - nominal_code: string
+                    name: string
+                    description: string
+                    category: string
+                    sub_category: string
+                    status: string
+                    currency: string
+                    current_balance: 0
+                    updated_at: '2019-08-24T14:15:22Z'
+                    parent_account_id: string
+                    rootfi_id: 0
+                    rootfi_company_id: 0
+                    rootfi_organisation_id: 0
+                    rootfi_integration_type: string
+                    rootfi_updated_at: string
+                    rootfi_created_at: string
+                    platform_id: string
+                total_count: 0
+              request_timestamp: string
+              response_timestamp: string
+              request_id: string
+      operationId: ''
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+  /write/accounts:
+    post:
+      summary: Create Accounts
+      tags:
+        - Accounts
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: v4wslg9wuferv
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: 49mxxqn1cdkof
+                            items:
+                              $ref: '#/definitions/accounts-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: create
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: kgt1koh2kgnsy
+              data:
+                type: array
+                x-stoplight:
+                  id: jb83tuom0yc7i
+                items:
+                  $ref: '#/definitions/accounts-write-fields'
+            required:
+              - company_id
+      description: ''
+  /read/bank_accounts:
+    get:
+      summary: Get All Bank Accounts
+      tags:
+        - Bank Accounts
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: xn3d6y674hql6
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: xmusf2g3ylky1
+                        items:
+                          $ref: '#/definitions/bank-accounts-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: j40kkqbexi7cc
+              - $ref: '#/definitions/base-response'
+      operationId: get-bank-accounts
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+  /write/bank_accounts:
+    post:
+      summary: Create Bank Accounts
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: lcqcnihty0my7
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: lapzuatr06ake
+                            items:
+                              $ref: '#/definitions/bank-accounts-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: get-write-bank-accounts
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: 4k48w04s7n8dd
+              data:
+                type: array
+                x-stoplight:
+                  id: so5xcgtufiprt
+                items:
+                  $ref: '#/definitions/bank-accounts-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Bank Accounts
+  /read/bank_transactions:
+    get:
+      summary: Get All Bank Transactions
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: berogp9pmn2uk
+                    properties:
+                      data:
+                        x-stoplight:
+                          id: cfmkq0firf3j0
+                        type: array
+                        items:
+                          $ref: '#/definitions/bank-transactions-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: u4sz77nmz8h75
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-bank_transactions
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+      tags:
+        - Bank Transactions
+  /read/bills:
+    get:
+      summary: Get All Bills
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: xjn1oy4p6tla3
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: m6i6utnpxjtfy
+                        items:
+                          $ref: '#/definitions/bills-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: vlv3spwfcesuw
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-bills
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+      tags:
+        - Bills
+  /write/bills:
+    post:
+      summary: Create Bills
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: w3qap15fzni5v
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: tb4xz8vl3gzig
+                            items:
+                              $ref: '#/definitions/bills-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: get-write-bills
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: uc773qbzfhoox
+              data:
+                type: array
+                x-stoplight:
+                  id: 8gyem8mcgfutt
+                items:
+                  $ref: '#/definitions/bills-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Bills
+  /read/bill_payments:
+    get:
+      summary: Get All Bill Payments
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: d1q6il4zrjnvq
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: 93ijc1tl6etvd
+                        items:
+                          $ref: '#/definitions/bill-payments-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: 6zhbk62p437t1
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-bill-payments
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+      tags:
+        - Bill Payments
+  /write/bill_payments:
+    post:
+      summary: Create Bill Payments
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: p7ufucsk1dw0m
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: 1eno4l9cdhyxg
+                            items:
+                              $ref: '#/definitions/bill-payments-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: get-write-bill-payments
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: 1emtaw1ti2no7
+              data:
+                type: array
+                x-stoplight:
+                  id: gmxepxvai3w39
+                items:
+                  $ref: '#/definitions/bill-payments-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Bill Payments
+  /read/bill_credit_notes:
+    get:
+      summary: Get All Bill Credit Notes
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: umxjo9idnwtvz
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: 7tujr6yrcav0r
+                        items:
+                          $ref: '#/definitions/bill-credit-notes-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: jpt091s8htu1l
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-bill-credit-notes
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+      tags:
+        - Bill Credit Notes
+  /write/bill_credit_notes:
+    post:
+      summary: Create Bill Credit Notes
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: tc97opuzljt07
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: huhcyl78oj967
+                            items:
+                              $ref: '#/definitions/bill-credit-notes-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: get-write-bill-credit-notes
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: lnf6b7ge5slwa
+              data:
+                type: array
+                x-stoplight:
+                  id: jint9krg098t4
+                items:
+                  $ref: '#/definitions/bill-credit-notes-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Bill Credit Notes
+  /read/contacts:
+    get:
+      summary: Get All Contacts
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: 9zaho8yoa0r5z
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: zy2rw1a6sqrrs
+                        items:
+                          $ref: '#/definitions/contacts-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: ifaqe5fviyfgs
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-contacts
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+      tags:
+        - Contacts
+  /write/contacts:
+    post:
+      summary: Create Contacts
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: rjjk783lt1nrv
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: g2tqojnuv6lj6
+                            items:
+                              $ref: '#/definitions/contacts-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: write-contacts
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: k4b7vtgg0bko5
+              data:
+                type: array
+                x-stoplight:
+                  id: 7bg8v0c7u228x
+                items:
+                  $ref: '#/definitions/contacts-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Contacts
+  '/write/contacts/{contact_id}':
+    parameters:
+      - type: string
+        name: contact_id
+        in: path
+        required: true
+    post:
+      summary: Update Contacts
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: i8ej2qlz3rzr8
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: rpw9mvp53de36
+                            items:
+                              $ref: '#/definitions/contacts-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: update-contacts
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: hfb1y33wipje8
+              data:
+                type: array
+                x-stoplight:
+                  id: njz676so9ogpk
+                items:
+                  $ref: '#/definitions/contacts-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Contacts
+  /read/company_info:
+    get:
+      summary: Get All Company Info
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: jiakw4ct8gqnt
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: 2eraoibm3egxp
+                        items:
+                          $ref: '#/definitions/company-info-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: 3jqc962wpkylq
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-company-info
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+      tags:
+        - Company Info
+  /read/documents:
+    get:
+      summary: Get All Documents
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: sc8bwx629r59k
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: e61ntfuupi4mh
+                        items:
+                          $ref: '#/definitions/documents-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: t8yhdtzrry2ik
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-documents
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+      tags:
+        - Documents
+  /write/documents:
+    post:
+      summary: Create Documents
+      consumes:
+        - application/x-www-form-urlencoded
+        - multipart/form-data
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: nxy30v85nli4q
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: s2yybjs055r85
+                            items:
+                              $ref: '#/definitions/documents-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: write-documents
+      parameters:
+        - in: formData
+          type: integer
+          name: company_id
+          required: true
+        - in: formData
+          type: string
+          name: document_type
+          required: true
+        - in: formData
+          type: string
+          name: document_type_id
+          required: true
+        - in: formData
+          type: file
+          name: file
+          required: true
+      description: ''
+      tags:
+        - Documents
+  /read/expenses:
+    get:
+      summary: Get All Expenses
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: wjc7gfnj5hgfj
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: 0wr93073kkq3x
+                        items:
+                          $ref: '#/definitions/expenses-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: clxq92el6a6ze
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-expenses
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+      tags:
+        - Expenses
+  /write/expenses:
+    post:
+      summary: Create Expenses
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: 89kf3doi8s8mp
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: x1d3iuumh6deq
+                            items:
+                              $ref: '#/definitions/expenses-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: write-expenses
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: w2c5ezgwr7qbo
+              data:
+                type: array
+                x-stoplight:
+                  id: o4juesebllm53
+                items:
+                  $ref: '#/definitions/expenses-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Expenses
+  /read/invoice_credit_notes:
+    get:
+      summary: Get All Invoice Credit Notes
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: x36a6gmhl2jxx
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: l7cjtrzh3c5u1
+                        items:
+                          $ref: '#/definitions/invoice-credit-notes-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: 4h8m3z0w3cz5o
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-invoice-credit-notes
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+      tags:
+        - Invoice Credit Notes
+  /write/invoice_credit_notes:
+    post:
+      summary: Create Invoice Credit Notes
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: qf57yen9ek0ry
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: 9t0bo1tl2s0lw
+                            items:
+                              $ref: '#/definitions/invoice-credit-notes-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: write-invoice-credit-notes
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: izo7n2njbn14q
+              data:
+                type: array
+                x-stoplight:
+                  id: 5q6o8r189fsso
+                items:
+                  $ref: '#/definitions/invoice-credit-notes-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Invoice Credit Notes
+  /read/invoices:
+    get:
+      summary: Get All Invoices
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: 879lrnrtketrb
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: n5q7jb23pcu37
+                        items:
+                          $ref: '#/definitions/invoices-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: y8z1v9rdx8ssw
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-invoices
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+      tags:
+        - Invoices
+  /write/invoices:
+    post:
+      summary: Create Invoices
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: xdis9kovvo5gg
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: 75lgm19hvqrgr
+                            items:
+                              $ref: '#/definitions/invoices-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: write-invoices
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: 1jvl8z4co5dx2
+              data:
+                type: array
+                x-stoplight:
+                  id: dic4m9shhe6gi
+                items:
+                  $ref: '#/definitions/invoices-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Invoices
+  '/write/invoices/{invoice_id}':
+    parameters:
+      - type: string
+        name: invoice_id
+        in: path
+        required: true
+    post:
+      summary: Update Invoices
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: zn3t00becs0j4
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: 84zmfl3mz5hsm
+                            items:
+                              $ref: '#/definitions/invoices-write-response'
+                        required:
+                          - data
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: update-invoices
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: wdx39v16empsh
+              data:
+                type: array
+                x-stoplight:
+                  id: 6tz4mtdp8t05q
+                items:
+                  $ref: '#/definitions/invoices-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Invoices
+  /read/invoice_payments:
+    get:
+      summary: Get All Invoice Payments
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: 1e6fcmx2vh05o
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: pv21mrzc8ti8f
+                        items:
+                          $ref: '#/definitions/invoice-payments-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: 7ugzjdjriv9eh
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-invoice-payments
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+      tags:
+        - Invoice Payments
+  /write/invoice_payments:
+    post:
+      summary: Create Invoice Payments
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: y74q61x80us9k
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: i6llp0jo1o40x
+                            items:
+                              $ref: '#/definitions/invoice-payments-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: write-invoice-payments
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: q6nte13l3tv9r
+              data:
+                type: array
+                x-stoplight:
+                  id: ldw7h12tdh0g7
+                items:
+                  $ref: '#/definitions/invoice-payments-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Invoice Payments
+  /read/items:
+    get:
+      summary: Get All Items
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: 80p5h2vm1hsr8
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: ikxj2w3dxtqf1
+                        items:
+                          $ref: '#/definitions/items-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: f1rtlrn009jo4
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-items
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+      tags:
+        - Items
+  /write/items:
+    post:
+      summary: Create Items
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: uzdhwfbwvogba
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: fos9hx2thmg4e
+                            items:
+                              $ref: '#/definitions/items-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: write-items
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: btvt61cvur4ct
+              data:
+                type: array
+                x-stoplight:
+                  id: 6a2ckieov2axg
+                items:
+                  $ref: '#/definitions/items-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Items
+  '/write/items/{item_id}':
+    parameters:
+      - type: string
+        name: item_id
+        in: path
+        required: true
+    post:
+      summary: Update Items
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: dbkdpfrwgknvv
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: 9h4b4olqgfj5l
+                            items:
+                              $ref: '#/definitions/items-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: update-items
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: fsq9xdji8egvb
+              data:
+                type: array
+                x-stoplight:
+                  id: sd929qij92bzd
+                items:
+                  $ref: '#/definitions/items-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Items
+  /read/journal_entries:
+    get:
+      summary: Get All Journal Entries
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: 8aesr0nf2z030
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: criuw9r67l037
+                        items:
+                          $ref: '#/definitions/journal-entries-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: mpv66hizit94y
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-journal-entries
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+      tags:
+        - Journal Entries
+  /write/journal_entries:
+    post:
+      summary: Create Journal Entries
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: feidv53jg86qt
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: 7v3jene5r0qxl
+                            items:
+                              $ref: '#/definitions/journal-entries-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: write-journal-entries
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: ltx61ohkbpkjp
+              data:
+                type: array
+                x-stoplight:
+                  id: p6ov3w138ttnm
+                items:
+                  $ref: '#/definitions/journal-entries-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Journal Entries
+  /read/purchase_orders:
+    get:
+      summary: Get All Purchase Orders
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: jvfl19nrq27dc
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: vk3mqxzmbz9ku
+                        items:
+                          $ref: '#/definitions/purchase-orders-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: r17nrcf7mj88u
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-purchase-orders
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+      tags:
+        - Purchase Orders
+  /write/purchase_orders:
+    post:
+      summary: Create Purchase Orders
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: 203y3bne4g4gl
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: xiw00ut29g6ql
+                            items:
+                              $ref: '#/definitions/purchase-orders-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: write-purchase-orders
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: ejbwlh4k2cv9t
+              data:
+                type: array
+                x-stoplight:
+                  id: 5mcognn4d78tn
+                items:
+                  $ref: '#/definitions/purchase-orders-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Purchase Orders
+  /read/sales_orders:
+    get:
+      summary: Get All Sales Orders
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: chvowd22wcojx
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: tp0ba87pbxevf
+                        items:
+                          $ref: '#/definitions/sales-orders-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: a3l8jsy3doyfq
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-sales-orders
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+      tags:
+        - Sales Orders
+  /write/sales_orders:
+    post:
+      summary: Create Sales Orders
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: gm4kevysbkbe6
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: 1tw5h2gssyy6x
+                            items:
+                              $ref: '#/definitions/sales-orders-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: write-sales-orders
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: rmyhc75q12x6h
+              data:
+                type: array
+                x-stoplight:
+                  id: ersf6ipn1198m
+                items:
+                  $ref: '#/definitions/sales-orders-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Sales Orders
+  /read/tax_rates:
+    get:
+      summary: Get All Tax Rates
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: mnahmle9df480
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: nq6uzhohi8lqt
+                        items:
+                          $ref: '#/definitions/tax-rates-fields'
+                      total_count:
+                        type: integer
+                        x-stoplight:
+                          id: rm43m7f284lei
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-tax-rates
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/filter'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/skip'
+      tags:
+        - Tax Rates
+  /write/tax_rates:
+    post:
+      summary: Create Tax Rates
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: 7jn9ijy7ta4v8
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: 80jsgtbowlc2m
+                            items:
+                              $ref: '#/definitions/tax-rates-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: write-tax-rates
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: 0hg7xfoa57h4d
+              data:
+                type: array
+                x-stoplight:
+                  id: tboe19tu6wbdd
+                items:
+                  $ref: '#/definitions/tax-rates-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Tax Rates
+  '/write/tax_rates/{tax_rate_id}':
+    parameters:
+      - type: string
+        name: tax_rate_id
+        in: path
+        required: true
+    post:
+      summary: Update Tax Rates
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: prh1nno23u88m
+                    allOf:
+                      - type: object
+                        properties:
+                          data:
+                            type: array
+                            x-stoplight:
+                              id: y1ksls1l11iu6
+                            items:
+                              $ref: '#/definitions/tax-rates-write-response'
+                      - $ref: '#/definitions/upload-job-id-response'
+              - $ref: '#/definitions/base-response'
+      operationId: update-tax-rates
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              company_id:
+                type: integer
+                x-stoplight:
+                  id: 24v5inw7l0ayj
+              data:
+                type: array
+                x-stoplight:
+                  id: er7axnpclcdeq
+                items:
+                  $ref: '#/definitions/tax-rates-write-fields'
+            required:
+              - company_id
+      description: ''
+      tags:
+        - Tax Rates
+  /read/tracking_categories:
+    parameters: []
+    get:
+      summary: Get All Tracking Categories
+      operationId: get-read-tracking_categories
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                x-stoplight:
+                  id: g9m51ar1ddj1h
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: f8glvjc7bivz0
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: g6zm87qar84tu
+                        items:
+                          $ref: '#/definitions/tracking-category-fields'
+                      total_count:
+                        type: number
+                        x-stoplight:
+                          id: in5xb73vogf7p
+              - $ref: '#/definitions/base-response'
+      x-stoplight:
+        id: zeuhefjgxiopz
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/skip'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/filter'
+      tags:
+        - Tracking Categories
+  /read/balance_sheet:
+    get:
+      summary: Get Balance Sheet
+      tags:
+        - Balance Sheet
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: y1s76081dpfck
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: 4lkfcm9qwbnmc
+                        items:
+                          $ref: '#/definitions/balance-sheet-fields'
+                      total_count:
+                        type: number
+                        x-stoplight:
+                          id: xptf94oe00ehf
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-balance_sheet
+      x-stoplight:
+        id: vqj26n37qyu2u
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/period'
+  /read/cash_flow_statement:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Cash Flow Statements
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: z0wzu3ojgelxs
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: 4c77y1c5pc9i9
+                        items:
+                          $ref: '#/definitions/cash-flow-statement-fields'
+                      total_count:
+                        type: number
+                        x-stoplight:
+                          id: wt7s73syzi7gi
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-cash_flow_statements
+      x-stoplight:
+        id: 6vvf5zvnze5o0
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/orderBy'
+        - $ref: '#/parameters/period'
+    parameters: []
+  /read/income_statement:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Income Statements
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: 26z3eyvztxm7e
+                    properties:
+                      data:
+                        type: array
+                        x-stoplight:
+                          id: 2lwrc1vwa3emv
+                        items:
+                          $ref: '#/definitions/income-statement-fields'
+                      total_count:
+                        type: number
+                        x-stoplight:
+                          id: n7l3ar4zlaoiz
+              - $ref: '#/definitions/base-response'
+      operationId: get-read-income_statements
+      x-stoplight:
+        id: ul6ofld1m60cz
+      parameters:
+        - $ref: '#/parameters/take'
+        - $ref: '#/parameters/period'
+        - $ref: '#/parameters/orderBy'
+    parameters: []
+definitions:
+  currency:
+    title: currency
+    x-stoplight:
+      id: 0ce9g8lnjt5o0
+    type: string
+  status:
+    title: status
+    x-stoplight:
+      id: nq1fl7ry523ci
+    type: string
+  common-fields:
+    type: object
+    properties:
+      rootfi_id:
+        type: integer
+      rootfi_company_id:
+        type: integer
+      rootfi_organisation_id:
+        type: integer
+      rootfi_integration_type:
+        type: string
+      rootfi_updated_at:
+        type: string
+      rootfi_created_at:
+        type: string
+      platform_id:
+        type: string
+    x-examples: {}
+  base-response:
+    type: object
+    properties:
+      request_timestamp:
+        type: string
+      response_timestamp:
+        type: string
+      request_id:
+        type: string
+    x-examples:
+      Example 1:
+        request_timestamp: '2023-07-04T09:56:34.131Z'
+        response_timestamp: '2023-07-04T09:56:36.773Z'
+        request_id: 13cf3158-b7d0-4916-b386-9585efb2db32
+  upload-job-id-response:
+    type: object
+    properties:
+      status:
+        type: string
+      upload_job_id:
+        type: string
+    x-examples:
+      Example 1:
+        status: SUCCESS
+        upload_job_id: cH9nn76F5CDkLBV
+  job-id-response:
+    type: object
+    properties:
+      job_id:
+        type: string
+      status:
+        type: string
+    x-examples: {}
+  accounts-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          nominal_code:
+            type: string
+          name:
+            type: string
+          description:
+            type: string
+          category:
+            type: string
+          sub_category:
+            type: string
+          status:
+            $ref: '#/definitions/status'
+          currency:
+            type: string
+          current_balance:
+            type: number
+          updated_at:
+            type: string
+            format: date-time
+          parent_account_id:
+            type: string
+            x-stoplight:
+              id: 4dqagtapggcx5
+      - $ref: '#/definitions/common-fields'
+  accounts-write-fields:
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      nominal_code:
+        type: string
+      currency:
+        type: string
+      sub_category:
+        type: string
+      parent_account_id:
+        type: string
+    x-examples: {}
+  accounts-write-response:
+    title: accounts-write-response
+    x-stoplight:
+      id: wevcn0mv7bksy
+    allOf:
+      - type: object
+        properties:
+          error:
+            type: string
+            x-stoplight:
+              id: xojse6nsm7lmo
+          response:
+            x-stoplight:
+              id: kmje4viqnhx39
+            allOf:
+              - type: object
+                properties:
+                  raw_data:
+                    type: object
+                    x-stoplight:
+                      id: 0htfy000u191f
+                  data_hash:
+                    type: string
+                    x-stoplight:
+                      id: vozqjv8mguelu
+              - $ref: '#/definitions/accounts-fields'
+      - $ref: '#/definitions/job-id-response'
+  bank-accounts-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          institution_name:
+            type: string
+          account_name:
+            type: string
+          account_number:
+            type: string
+          category:
+            type: string
+          balance:
+            type: number
+          currency:
+            $ref: '#/definitions/currency'
+          updated_at:
+            type: string
+            format: date-time
+      - $ref: '#/definitions/common-fields'
+  bank-accounts-write-fields:
+    type: object
+    x-examples: {}
+    properties:
+      account_name:
+        type: string
+      category:
+        type: string
+      institution_name:
+        type: string
+      account_number:
+        type: string
+      balance:
+        type: number
+  bank-accounts-write-response:
+    title: bank-accounts-write-response
+    x-stoplight:
+      id: kti2dblixj24q
+    allOf:
+      - type: object
+        properties:
+          error:
+            type: string
+            x-stoplight:
+              id: r908wfjhtbz5v
+          response:
+            x-stoplight:
+              id: ntzgh1g6te779
+            allOf:
+              - type: object
+                properties:
+                  raw_data:
+                    type: object
+                    x-stoplight:
+                      id: fcqwimuzw004c
+                  data_hash:
+                    type: string
+                    x-stoplight:
+                      id: hgxgxth4p3gxh
+              - $ref: '#/definitions/bank-accounts-fields'
+      - $ref: '#/definitions/job-id-response'
+  bank-transactions-fields:
+    x-examples:
+      Example 1:
+        account_id: '3770712000000493001'
+        contact_id: null
+        transaction_date: '2023-06-20T00:00:00.000Z'
+        amount: 76
+        type: interest_income
+        status: manually_added
+        currency: INR
+        currency_rate: null
+        updated_at: '2023-06-20T00:00:00.000Z'
+        contact:
+          data: null
+        account:
+          data:
+            platform_id: '3770712000000493001'
+            institution_name: null
+            account_name: dddsf
+            account_number: null
+            category: bank
+            balance: 6153
+            currency: INR
+            updated_at: null
+    allOf:
+      - properties:
+          account_id:
+            type: string
+          contact_id:
+            type: string
+          transaction_date:
+            type: string
+            format: date-time
+          amount:
+            type: number
+          type:
+            type: string
+          status:
+            $ref: '#/definitions/status'
+          currency:
+            $ref: '#/definitions/currency'
+          currency_rate:
+            type: number
+          updated_at:
+            type: string
+            format: date-time
+          contact:
+            type: object
+            properties:
+              data:
+                type: object
+                x-nullable: true
+          account:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/accounts-fields'
+    type: object
+  line-items-fields:
+    type: object
+    x-examples: {}
+    properties:
+      platform_id:
+        type: string
+      line_item_type:
+        type: string
+      line_item_type_id:
+        type: string
+      tracking_category_ids:
+        type: array
+        items:
+          type: string
+      item_id:
+        type: string
+      tax_id:
+        type: string
+      account_id:
+        type: string
+      description:
+        type: string
+      quantity:
+        type: integer
+      unit_amount:
+        type: number
+      total_amount:
+        type: number
+      sub_total:
+        type: number
+      tax_amount:
+        type: number
+      total_discount:
+        type: number
+      updated_at:
+        type: string
+        format: date-time
+    title: ''
+  line-items-create-fields:
+    type: object
+    x-examples:
+      Example 1:
+        item_id: '3770712000000085075'
+        tax_id: '3770712000000106071'
+        account_id: '3770712000000076012'
+        description: Item 111 testtt
+        quantity: 10
+        unit_amount: 20
+        total_discount: 10
+    properties:
+      item_id:
+        type: string
+      tax_id:
+        type: string
+      account_id:
+        type: string
+      description:
+        type: string
+      quantity:
+        type: integer
+      unit_amount:
+        type: number
+      total_discount:
+        type: number
+  bills-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          contact_id:
+            type: string
+          document_number:
+            type: string
+          posted_date:
+            type: string
+            format: date-time
+          due_date:
+            type: string
+            format: date-time
+          currency:
+            $ref: '#/definitions/currency'
+          currency_rate:
+            type: number
+          memo:
+            type: string
+          status:
+            $ref: '#/definitions/status'
+          total_amount:
+            type: number
+          sub_total:
+            type: number
+          total_discount:
+            type: number
+          tax_amount:
+            type: number
+          amount_due:
+            type: number
+          purchase_order_ids:
+            type: array
+            x-nullable: true
+            items:
+              x-stoplight:
+                id: 5t25u7928dbod
+              type: string
+          updated_at:
+            type: string
+            format: date-time
+          line_items:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/line-items-fields'
+          documents:
+            type: object
+            properties:
+              data:
+                type: string
+                x-nullable: true
+          payments:
+            type: object
+            properties:
+              data:
+                type: string
+                x-nullable: true
+      - $ref: '#/definitions/common-fields'
+  bills-write-fields:
+    type: object
+    x-examples:
+      Example 1:
+        contact_id: '3770712000000418001'
+        document_number: BILLT13984705
+        posted_date: '2023-03-17'
+        due_date: '2024-03-19'
+        memo: Test Invoice
+        line_items:
+          - item_id: '3770712000000085075'
+            tax_id: '3770712000000106071'
+            account_id: '3770712000000076012'
+            description: Item 111 testtt
+            quantity: 10
+            unit_amount: 20
+            total_discount: 10
+    properties:
+      contact_id:
+        type: string
+      document_number:
+        type: string
+      posted_date:
+        type: string
+        format: date-time
+      due_date:
+        type: string
+        format: date-time
+      memo:
+        type: string
+      line_items:
+        type: array
+        items:
+          $ref: '#/definitions/line-items-create-fields'
+  bills-write-response:
+    title: bills-write-response
+    x-stoplight:
+      id: 5qkcb17zbx8be
+    allOf:
+      - type: object
+        properties:
+          error:
+            type: string
+            x-stoplight:
+              id: r908wfjhtbz5v
+          response:
+            x-stoplight:
+              id: ntzgh1g6te779
+            allOf:
+              - type: object
+                properties:
+                  raw_data:
+                    type: object
+                    x-stoplight:
+                      id: fcqwimuzw004c
+                  data_hash:
+                    type: string
+                    x-stoplight:
+                      id: hgxgxth4p3gxh
+              - $ref: '#/definitions/bills-fields'
+      - $ref: '#/definitions/job-id-response'
+  bill-payments-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          contact_id:
+            type: string
+          account_id:
+            type: string
+          amount:
+            type: number
+          payment_date:
+            type: string
+            format: date-time
+          payment_mode:
+            type: string
+          currency:
+            $ref: '#/definitions/currency'
+          currency_rate:
+            type: string
+          memo:
+            type: string
+          document_number:
+            type: string
+          updated_at:
+            type: string
+            format: date-time
+          bill:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/bills-fields'
+      - $ref: '#/definitions/common-fields'
+  bill-payments-write-fields:
+    type: object
+    x-examples: {}
+    properties:
+      bill_id:
+        type: string
+      contact_id:
+        type: string
+      account_id:
+        type: string
+      amount:
+        type: number
+      payment_date:
+        type: string
+        format: date-time
+      currency:
+        $ref: '#/definitions/currency'
+      memo:
+        type: string
+      document_number:
+        type: string
+  bill-payments-write-response:
+    title: bill-payments-write-response
+    x-stoplight:
+      id: 5qkcb17zbx8be
+    allOf:
+      - type: object
+        properties:
+          error:
+            type: string
+            x-stoplight:
+              id: r908wfjhtbz5v
+          response:
+            x-stoplight:
+              id: ntzgh1g6te779
+            allOf:
+              - type: object
+                properties:
+                  raw_data:
+                    type: object
+                    x-stoplight:
+                      id: fcqwimuzw004c
+                  data_hash:
+                    type: string
+                    x-stoplight:
+                      id: hgxgxth4p3gxh
+              - $ref: '#/definitions/bill-payments-fields'
+      - $ref: '#/definitions/job-id-response'
+  bill-credit-notes-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          contact_id:
+            type: string
+          document_number:
+            type: string
+          total_amount:
+            type: number
+          remaining_credit:
+            type: number
+          posted_date:
+            type: string
+            format: date-time
+          currency:
+            $ref: '#/definitions/currency'
+          memo:
+            type: string
+          status:
+            type: string
+          tax_amount:
+            type: number
+          bill_ids:
+            type: array
+            items:
+              type: string
+          updated_at:
+            type: string
+            format: date-time
+          line_items:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/line-items-fields'
+      - $ref: '#/definitions/common-fields'
+  bill-credit-notes-write-fields:
+    type: object
+    x-examples:
+      Example 1:
+        contact_id: '3770712000000209007'
+        document_number: BCN-5200
+        posted_date: '2023-04-17'
+        memo: psssss
+        bill_ids:
+          - '3770712000000213001'
+        line_items:
+          - unit_amount: 25
+            quantity: 5
+            item_id: '3770712000000085075'
+            description: test line items desc
+            tax_id: '3770712000000106071'
+            account_id: '3770712000000076064'
+    properties:
+      contact_id:
+        type: string
+      document_number:
+        type: string
+      posted_date:
+        type: string
+        format: date-time
+      memo:
+        type: string
+      bill_ids:
+        type: array
+        items:
+          type: string
+      line_items:
+        type: array
+        items:
+          $ref: '#/definitions/line-items-create-fields'
+    title: ''
+  bill-credit-notes-write-response:
+    title: bill-credit-notes-write-response
+    x-stoplight:
+      id: 5qkcb17zbx8be
+    allOf:
+      - type: object
+        properties:
+          error:
+            type: string
+            x-stoplight:
+              id: r908wfjhtbz5v
+          response:
+            x-stoplight:
+              id: ntzgh1g6te779
+            allOf:
+              - type: object
+                properties:
+                  raw_data:
+                    type: object
+                    x-stoplight:
+                      id: fcqwimuzw004c
+                  data_hash:
+                    type: string
+                    x-stoplight:
+                      id: hgxgxth4p3gxh
+              - $ref: '#/definitions/bill-credit-notes-fields'
+      - $ref: '#/definitions/job-id-response'
+  addresses-fields:
+    type: object
+    x-examples: {}
+    properties:
+      platform_id:
+        type: string
+      type:
+        type: string
+      data_model:
+        type: string
+      data_model_id:
+        type: string
+      street:
+        type: string
+      locality:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      country:
+        type: string
+      pincode:
+        type: string
+      updated_at:
+        type: string
+        format: date-time
+  addresses-write-fields:
+    type: object
+    properties:
+      type:
+        type: string
+      street:
+        type: string
+      locality:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      pincode:
+        type: string
+      country:
+        type: string
+    x-examples: {}
+  phone-numbers-fields:
+    type: object
+    x-examples: {}
+    properties:
+      platform_id:
+        type: string
+      data_model:
+        type: string
+      data_model_id:
+        type: string
+      number:
+        type: string
+      type:
+        type: string
+      updated_at:
+        type: string
+        format: date-time
+  external-links-fields:
+    type: object
+    x-examples: {}
+    properties:
+      platform_id:
+        type: string
+      data_model:
+        type: string
+      data_model_id:
+        type: string
+      link:
+        type: string
+      type:
+        type: string
+      updated_at:
+        type: string
+        format: date-time
+  contacts-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          name:
+            type: string
+          contact_name:
+            type: string
+          contact_type:
+            type: string
+          currency:
+            $ref: '#/definitions/currency'
+          tax_number:
+            type: number
+          registration_number:
+            type: string
+            x-nullable: true
+          status:
+            $ref: '#/definitions/status'
+          updated_at:
+            type: string
+            format: date-time
+          addresses:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/addresses-fields'
+          phone_numbers:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/phone-numbers-fields'
+          external_links:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/external-links-fields'
+      - $ref: '#/definitions/common-fields'
+    title: ''
+  contacts-write-fields:
+    type: object
+    x-examples:
+      Example 1:
+        name: Imperial Army 22
+        contact_name: Imperial Army 2
+        registration_number: 07CEUPK5322M1ZX
+        tax_number: ODSPS1279G
+        contact_type: CUSTOMER
+        website: 'https://contact-website.com'
+        email: test@rootfi.in
+        currency: INR
+        mobile: '+919876543210'
+        telephone: '8043784657'
+        addresses:
+          - type: BILLING
+            street: ABC house
+            locality: Koramanager
+            city: Hyderabad
+            state: AP
+            pincode: '500045'
+            country: India
+          - type: SHIPPING
+            street: ABC house
+            locality: Indrmangala
+            city: Hyderabad
+            state: AP
+            pincode: '500045'
+            country: India
+    properties:
+      name:
+        type: string
+      contact_name:
+        type: string
+      registration_number:
+        type: string
+      tax_number:
+        type: string
+      contact_type:
+        type: string
+      website:
+        type: string
+      email:
+        type: string
+      currency:
+        type: string
+      mobile:
+        type: string
+      telephone:
+        type: string
+      addresses:
+        type: array
+        items:
+          $ref: '#/definitions/addresses-write-fields'
+  contacts-write-response:
+    title: contacts-write-response
+    x-stoplight:
+      id: deyfnijlx3hsy
+    allOf:
+      - type: object
+        properties:
+          error:
+            type: string
+            x-stoplight:
+              id: r908wfjhtbz5v
+          response:
+            x-stoplight:
+              id: ntzgh1g6te779
+            allOf:
+              - type: object
+                properties:
+                  raw_data:
+                    type: object
+                    x-stoplight:
+                      id: fcqwimuzw004c
+                  data_hash:
+                    type: string
+                    x-stoplight:
+                      id: hgxgxth4p3gxh
+              - $ref: '#/definitions/contacts-fields'
+      - $ref: '#/definitions/job-id-response'
+  company-info-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          name:
+            type: string
+          legal_name:
+            type: string
+          tax_number:
+            type: string
+          registration_number:
+            type: string
+          base_currency:
+            type: string
+          fiscal_start_at:
+            type: string
+            format: date-time
+          org_created_at:
+            type: string
+            format: date-time
+          updated_at:
+            type: string
+            format: date-time
+      - $ref: '#/definitions/common-fields'
+  documents-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          platform_id:
+            type: string
+          file_name:
+            type: string
+          file_type:
+            type: string
+          file_size:
+            type: number
+          document_type_id:
+            type: string
+          document_type:
+            type: string
+          document_uploaded:
+            type: boolean
+          download_link:
+            type: string
+          updated_at:
+            type: string
+            format: date-time
+      - $ref: '#/definitions/common-fields'
+  documents-write-response:
+    title: documents-write-response
+    x-stoplight:
+      id: awcz9bll275ai
+    allOf:
+      - type: object
+        properties:
+          error:
+            type: string
+            x-stoplight:
+              id: r908wfjhtbz5v
+          response:
+            x-stoplight:
+              id: ntzgh1g6te779
+            allOf:
+              - type: object
+                properties:
+                  raw_data:
+                    type: object
+                    x-stoplight:
+                      id: fcqwimuzw004c
+                  data_hash:
+                    type: string
+                    x-stoplight:
+                      id: hgxgxth4p3gxh
+              - $ref: '#/definitions/documents-fields'
+      - $ref: '#/definitions/job-id-response'
+  expenses-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          document_number:
+            type: string
+          payment_mode:
+            type: string
+          posted_date:
+            type: string
+            format: date-time
+          total_amount:
+            type: integer
+          sub_total:
+            type: number
+          tax_amount:
+            type: number
+          currency:
+            type: string
+          currency_rate:
+            type: number
+          memo:
+            type: number
+          account_id:
+            type: string
+          contact_id:
+            type: string
+          updated_at:
+            type: string
+            format: date-time
+          line_items:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/line-items-fields'
+          documents:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/documents-fields'
+      - $ref: '#/definitions/common-fields'
+  expenses-write-fields:
+    type: object
+    x-examples: {}
+    properties:
+      account_id:
+        type: string
+      contact_id:
+        type: string
+      posted_date:
+        type: string
+        format: date-time
+      document_number:
+        type: string
+      memo:
+        type: string
+      payment_mode:
+        type: string
+      line_items:
+        type: array
+        items:
+          $ref: '#/definitions/line-items-create-fields'
+  expenses-write-response:
+    title: expenses-write-response
+    x-stoplight:
+      id: 7xm843tzhgcbu
+    allOf:
+      - type: object
+        properties:
+          error:
+            type: string
+            x-stoplight:
+              id: r908wfjhtbz5v
+          response:
+            x-stoplight:
+              id: ntzgh1g6te779
+            allOf:
+              - type: object
+                properties:
+                  raw_data:
+                    type: object
+                    x-stoplight:
+                      id: fcqwimuzw004c
+                  data_hash:
+                    type: string
+                    x-stoplight:
+                      id: hgxgxth4p3gxh
+              - $ref: '#/definitions/expenses-fields'
+      - $ref: '#/definitions/job-id-response'
+  invoice-credit-notes-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          contact_id:
+            type: string
+          document_number:
+            type: string
+          total_amount:
+            type: number
+          remaining_credit:
+            type: number
+          posted_date:
+            type: string
+            format: date-time
+          currency:
+            $ref: '#/definitions/currency'
+          memo:
+            type: string
+          status:
+            type: string
+          tax_amount:
+            type: number
+          invoice_ids:
+            type: array
+            items:
+              type: string
+          updated_at:
+            type: string
+            format: date-time
+          line_items:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/line-items-fields'
+      - $ref: '#/definitions/common-fields'
+    title: ''
+  invoice-credit-notes-write-fields:
+    type: object
+    x-examples: {}
+    properties:
+      contact_id:
+        type: string
+      posted_date:
+        type: string
+        format: date-time
+      document_number:
+        type: string
+      memo:
+        type: string
+      invoice_ids:
+        type: array
+        items:
+          type: string
+      line_items:
+        type: array
+        items:
+          $ref: '#/definitions/line-items-create-fields'
+  invoice-credit-notes-write-response:
+    title: invoice-credit-notes-write-response
+    x-stoplight:
+      id: xceuhe3mxmb6a
+    allOf:
+      - type: object
+        properties:
+          error:
+            type: string
+            x-stoplight:
+              id: r908wfjhtbz5v
+          response:
+            x-stoplight:
+              id: ntzgh1g6te779
+            allOf:
+              - type: object
+                properties:
+                  raw_data:
+                    type: object
+                    x-stoplight:
+                      id: fcqwimuzw004c
+                  data_hash:
+                    type: string
+                    x-stoplight:
+                      id: hgxgxth4p3gxh
+              - $ref: '#/definitions/invoice-credit-notes-fields'
+      - $ref: '#/definitions/job-id-response'
+  invoices-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          contact_id:
+            type: string
+          sales_order_ids:
+            type: array
+            items:
+              type: string
+          document_number:
+            type: string
+          posted_date:
+            type: string
+            format: date-time
+          due_date:
+            type: string
+            format: date-time
+          currency:
+            type: string
+          currency_rate:
+            type: number
+          status:
+            $ref: '#/definitions/status'
+          total_amount:
+            type: number
+          sub_total:
+            type: number
+          total_discount:
+            type: number
+          tax_amount:
+            type: number
+          amount_due:
+            type: number
+          memo:
+            type: string
+          updated_at:
+            type: string
+            format: date-time
+          payments:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+          line_items:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/line-items-fields'
+          documents:
+            type: object
+            properties:
+              data:
+                type: array
+                x-nullable: true
+                items:
+                  $ref: '#/definitions/documents-fields'
+      - $ref: '#/definitions/common-fields'
+    x-tags:
+      - Invoices
+  invoices-write-fields:
+    type: object
+    x-examples: {}
+    properties:
+      contact_id:
+        type: string
+      document_number:
+        type: string
+      posted_date:
+        type: string
+        format: date-time
+      due_date:
+        type: string
+        format: date-time
+      currency:
+        type: string
+      memo:
+        type: string
+      line_items:
+        type: array
+        items:
+          $ref: '#/definitions/line-items-create-fields'
+  invoices-write-response:
+    title: invoices-write-response
+    x-stoplight:
+      id: g7w5ll34m3nr9
+    allOf:
+      - type: object
+        properties:
+          error:
+            type: string
+            x-stoplight:
+              id: r908wfjhtbz5v
+          response:
+            x-stoplight:
+              id: ntzgh1g6te779
+            allOf:
+              - type: object
+                properties:
+                  raw_data:
+                    type: object
+                    x-stoplight:
+                      id: fcqwimuzw004c
+                  data_hash:
+                    type: string
+                    x-stoplight:
+                      id: hgxgxth4p3gxh
+              - $ref: '#/definitions/invoices-fields'
+      - $ref: '#/definitions/job-id-response'
+  invoice-payments-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          payment_id:
+            type: string
+          invoice_id:
+            type: string
+          account_id:
+            type: string
+          contact_id:
+            type: string
+          amount:
+            type: integer
+          payment_date:
+            type: string
+            format: date-time
+          payment_mode:
+            type: string
+          currency:
+            $ref: '#/definitions/currency'
+          currency_rate:
+            type: number
+            x-nullable: true
+          document_number:
+            type: string
+          memo:
+            type: string
+          updated_at:
+            type: string
+            format: date-time
+          invoice:
+            type: object
+            properties:
+              data:
+                $ref: '#/definitions/invoices-fields'
+      - $ref: '#/definitions/common-fields'
+  invoice-payments-write-fields:
+    type: object
+    x-examples:
+      Example 1:
+        invoice_id: '3770712000000707001'
+        account_id: '3770712000000000361'
+        contact_id: '3770712000000226001'
+        amount: 19
+        payment_date: '2023-03-01'
+        payment_mode: CASH
+        memo: description
+    properties:
+      invoice_id:
+        type: string
+      account_id:
+        type: string
+      contact_id:
+        type: string
+      amount:
+        type: integer
+      payment_date:
+        type: string
+        format: date-time
+      payment_mode:
+        type: string
+      memo:
+        type: string
+  invoice-payments-write-response:
+    title: invoice-payments-write-response
+    x-stoplight:
+      id: 9dm9hszfpoucb
+    allOf:
+      - type: object
+        properties:
+          error:
+            type: string
+            x-stoplight:
+              id: r908wfjhtbz5v
+          response:
+            x-stoplight:
+              id: ntzgh1g6te779
+            allOf:
+              - type: object
+                properties:
+                  raw_data:
+                    type: object
+                    x-stoplight:
+                      id: fcqwimuzw004c
+                  data_hash:
+                    type: string
+                    x-stoplight:
+                      id: hgxgxth4p3gxh
+              - $ref: '#/definitions/invoice-payments-fields'
+      - $ref: '#/definitions/job-id-response'
+  items-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          name:
+            type: string
+          description:
+            type: string
+          status:
+            type: string
+          type:
+            type: string
+          code:
+            type: string
+          quantity_on_hand:
+            type: integer
+          bill_item:
+            type: object
+            properties:
+              account_id:
+                type: string
+              unit_price:
+                type: integer
+              description:
+                type: string
+          invoice_item:
+            type: object
+            properties:
+              account_id:
+                type: string
+              unit_price:
+                type: integer
+              description:
+                type: string
+          is_bill_item:
+            type: boolean
+          is_invoice_item:
+            type: boolean
+          updated_at:
+            type: string
+            format: date-time
+      - $ref: '#/definitions/common-fields'
+    description: ''
+  items-write-fields:
+    type: object
+    x-examples:
+      Example 1:
+        name: Item 9618
+        code: ITM2902
+        type: INVENTORY
+        quantity_on_hand: 12
+        invoice_item:
+          description: Invoice Item Description
+          unit_price: 11
+          account_id: '3770712000000000388'
+        bill_item:
+          description: Bill Item Description
+          unit_price: 10
+          account_id: '3770712000000076060'
+    properties:
+      name:
+        type: string
+      code:
+        type: string
+      type:
+        type: string
+      quantity_on_hand:
+        type: integer
+      invoice_item:
+        type: object
+        properties:
+          description:
+            type: string
+          unit_price:
+            type: number
+          account_id:
+            type: string
+      bill_item:
+        type: object
+        properties:
+          description:
+            type: string
+          unit_price:
+            type: number
+          account_id:
+            type: string
+  items-write-response:
+    title: items-write-response
+    x-stoplight:
+      id: e54ogkx2o8p3d
+    allOf:
+      - type: object
+        properties:
+          error:
+            type: string
+            x-stoplight:
+              id: r908wfjhtbz5v
+          response:
+            x-stoplight:
+              id: ntzgh1g6te779
+            allOf:
+              - type: object
+                properties:
+                  raw_data:
+                    type: object
+                    x-stoplight:
+                      id: fcqwimuzw004c
+                  data_hash:
+                    type: string
+                    x-stoplight:
+                      id: hgxgxth4p3gxh
+              - $ref: '#/definitions/items-fields'
+      - $ref: '#/definitions/job-id-response'
+  journal-lines-fields:
+    type: object
+    x-examples: {}
+    properties:
+      platform_id:
+        type: string
+      journal_entry_id:
+        type: string
+      account_id:
+        type: string
+      contact_id:
+        type: string
+      tax_id:
+        type: string
+      tracking_category_ids:
+        type: array
+        items:
+          type: string
+      type:
+        type: string
+      description:
+        type: string
+      net_amount:
+        type: number
+      tax_amount:
+        type: number
+      updated_at:
+        type: string
+        format: date-time
+  journal-entries-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          account_id:
+            x-nullable: true
+          amount:
+            type: number
+          document_number:
+            type: string
+          currency:
+            $ref: '#/definitions/currency'
+          currency_rate:
+            type: string
+          journal_entry_type:
+            type: string
+          description:
+            type: string
+          posted_date:
+            type: string
+            format: date-time
+          updated_at:
+            type: string
+            format: date-time
+          journal_lines:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/journal-lines-fields'
+      - $ref: '#/definitions/common-fields'
+  journal-lines-write-fields:
+    type: object
+    x-examples: {}
+    properties:
+      account_id:
+        type: string
+      net_amount:
+        type: number
+      type:
+        type: string
+      description:
+        type: string
+      tax_id:
+        type: string
+      tracking_category_ids:
+        type: array
+        items:
+          type: string
+  journal-entries-write-fields:
+    type: object
+    x-examples:
+      Example 1:
+        posted_date: '2023-06-12'
+        description: journal_desc
+        document_number: '772706'
+        journal_lines: []
+    properties:
+      posted_date:
+        type: string
+        format: date-time
+      description:
+        type: string
+      document_number:
+        type: string
+      journal_lines:
+        type: array
+        items:
+          $ref: '#/definitions/journal-lines-write-fields'
+  journal-entries-write-response:
+    title: journal-entries-write-response
+    x-stoplight:
+      id: yxmlzt6lgmxf5
+    allOf:
+      - type: object
+        properties:
+          error:
+            type: string
+            x-stoplight:
+              id: r908wfjhtbz5v
+          response:
+            x-stoplight:
+              id: ntzgh1g6te779
+            allOf:
+              - type: object
+                properties:
+                  raw_data:
+                    type: object
+                    x-stoplight:
+                      id: fcqwimuzw004c
+                  data_hash:
+                    type: string
+                    x-stoplight:
+                      id: hgxgxth4p3gxh
+              - $ref: '#/definitions/journal-entries-fields'
+      - $ref: '#/definitions/job-id-response'
+  purchase-orders-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          contact_id:
+            type: string
+          bill_ids:
+            type: array
+            items:
+              type: string
+          document_number:
+            type: string
+          delivery_date:
+            type: string
+            format: date-time
+          posted_date:
+            type: string
+            format: date-time
+          description:
+            type: string
+          payment_mode:
+            type: string
+          currency:
+            type: string
+          currency_rate:
+            type: string
+          status:
+            $ref: '#/definitions/status'
+          total_amount:
+            type: number
+          sub_total:
+            type: number
+          tax_amount:
+            type: number
+          total_discount:
+            type: number
+          updated_at:
+            type: string
+            format: date-time
+          addresses:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/addresses-fields'
+          line_items:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/line-items-fields'
+      - $ref: '#/definitions/common-fields'
+  purchase-orders-write-fields:
+    type: object
+    x-examples: {}
+    properties:
+      contact_id:
+        type: string
+      posted_date:
+        type: string
+        format: date-time
+      description:
+        type: string
+      document_number:
+        type: string
+      addresses:
+        type: array
+        items:
+          $ref: '#/definitions/addresses-write-fields'
+      line_items:
+        type: array
+        items:
+          $ref: '#/definitions/line-items-create-fields'
+  purchase-orders-write-response:
+    title: purchase-orders-write-response
+    x-stoplight:
+      id: hndeahf1kkwem
+    allOf:
+      - type: object
+        properties:
+          error:
+            type: string
+            x-stoplight:
+              id: r908wfjhtbz5v
+          response:
+            x-stoplight:
+              id: ntzgh1g6te779
+            allOf:
+              - type: object
+                properties:
+                  raw_data:
+                    type: object
+                    x-stoplight:
+                      id: fcqwimuzw004c
+                  data_hash:
+                    type: string
+                    x-stoplight:
+                      id: hgxgxth4p3gxh
+              - $ref: '#/definitions/purchase-orders-fields'
+      - $ref: '#/definitions/job-id-response'
+  sales-orders-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          contact_id:
+            type: string
+          invoice_ids:
+            type: array
+            items:
+              type: string
+          document_number:
+            type: string
+          posted_date:
+            type: string
+            format: date-time
+          delivery_date:
+            type: string
+            format: date-time
+          description:
+            type: string
+          currency:
+            type: string
+          currency_rate:
+            type: number
+          status:
+            $ref: '#/definitions/status'
+          total_amount:
+            type: integer
+          sub_total:
+            type: number
+          tax_amount:
+            type: number
+          total_discount:
+            type: number
+          updated_at:
+            type: string
+            format: date-time
+          addresses:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/addresses-fields'
+          line_items:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/line-items-fields'
+      - $ref: '#/definitions/common-fields'
+  sales-orders-write-fields:
+    type: object
+    x-examples: {}
+    properties:
+      contact_id:
+        type: string
+      posted_date:
+        type: string
+        format: date-time
+      delivery_date:
+        type: string
+        format: date-time
+      description:
+        type: string
+      document_number:
+        type: string
+      status:
+        $ref: '#/definitions/status'
+      line_items:
+        type: array
+        items:
+          $ref: '#/definitions/line-items-create-fields'
+  sales-orders-write-response:
+    title: sales-orders-write-response
+    x-stoplight:
+      id: b2d4lk6cr1xkc
+    allOf:
+      - type: object
+        properties:
+          error:
+            type: string
+            x-stoplight:
+              id: r908wfjhtbz5v
+          response:
+            x-stoplight:
+              id: ntzgh1g6te779
+            allOf:
+              - type: object
+                properties:
+                  raw_data:
+                    type: object
+                    x-stoplight:
+                      id: fcqwimuzw004c
+                  data_hash:
+                    type: string
+                    x-stoplight:
+                      id: hgxgxth4p3gxh
+              - $ref: '#/definitions/sales-orders-fields'
+      - $ref: '#/definitions/job-id-response'
+  tax-rates-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          name:
+            type: string
+          code:
+            type: string
+          effective_tax_rate:
+            type: number
+          total_tax_rate:
+            type: number
+          tax_type:
+            type: string
+          components:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                rate:
+                  type: string
+                tax_agency:
+                  x-nullable: true
+                is_compound:
+                  type: number
+          updated_at:
+            type: string
+            format: date-time
+      - $ref: '#/definitions/common-fields'
+  tax-rates-write-fields:
+    type: object
+    x-examples: {}
+    properties:
+      name:
+        type: string
+      code:
+        type: string
+      tax_type:
+        type: string
+      total_tax_rate:
+        type: number
+      components:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+            rate:
+              type: number
+            is_compound:
+              type: boolean
+            tax_agency:
+              type: string
+            tax_applicable_on:
+              type: string
+  tax-rates-write-response:
+    title: tax-rates-write-response
+    x-stoplight:
+      id: h7zhim6k7sj07
+    allOf:
+      - type: object
+        properties:
+          error:
+            type: string
+            x-stoplight:
+              id: r908wfjhtbz5v
+          response:
+            x-stoplight:
+              id: ntzgh1g6te779
+            allOf:
+              - type: object
+                properties:
+                  raw_data:
+                    type: object
+                    x-stoplight:
+                      id: fcqwimuzw004c
+                  data_hash:
+                    type: string
+                    x-stoplight:
+                      id: hgxgxth4p3gxh
+              - $ref: '#/definitions/tax-rates-fields'
+      - $ref: '#/definitions/job-id-response'
+  tracking-category-fields:
+    x-examples:
+      Example 1:
+        rootfi_id: 1435
+        rootfi_company_id: 880
+        rootfi_organisation_id: 1
+        rootfi_integration_type: XERO
+        rootfi_updated_at: '2023-08-07T20:00:52.236Z'
+        rootfi_created_at: '2023-07-25T06:29:51.652Z'
+        platform_id: fa437cfd-f005-4538-ae84-943857da5c8c
+        name: Region
+        status: ACTIVE
+        parent_id: fa437cfd-f005-4538-ae84-943857da5c8c
+        has_children: true
+        updated_at: null
+        raw_data: {}
+        data_hash: 06e707a7b56e6b82225d6fe833d28d9e7f716f24feac146ec8da8904049284cf
+    allOf:
+      - type: object
+        properties:
+          name:
+            type: string
+          status:
+            $ref: '#/definitions/status'
+          parent_id:
+            type: string
+          has_children:
+            type: boolean
+          updated_at:
+            type: string
+            format: date-time
+      - $ref: '#/definitions/common-fields'
+  balance-sheet-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          assets:
+            type: array
+            items:
+              $ref: '#/definitions/financial-statement-nested-fields'
+          liabilities:
+            type: array
+            items:
+              $ref: '#/definitions/financial-statement-nested-fields'
+          equity:
+            type: array
+            items:
+              $ref: '#/definitions/financial-statement-nested-fields'
+          period_start:
+            type: string
+            format: date-time
+          period_end:
+            type: string
+            format: date-time
+          net_assets:
+            type: number
+          currency:
+            type: string
+          updated_at:
+            type: string
+            format: date-time
+      - $ref: '#/definitions/common-fields'
+  financial-statement-nested-fields:
+    title: financial-statement-nested-fields
+    x-stoplight:
+      id: xf3hygz231nh6
+    type: object
+    properties:
+      name:
+        type: string
+        x-stoplight:
+          id: fd4sfyoio0i8c
+      value:
+        type: number
+        x-stoplight:
+          id: 4ilz292j3ans8
+      account_id:
+        type: string
+        x-stoplight:
+          id: 4b9dd7sia0gnt
+      line_items:
+        type: array
+        x-stoplight:
+          id: zv2tsoaifhy54
+        items:
+          $ref: '#/definitions/financial-statement-nested-line-item-fields'
+  financial-statement-nested-line-item-fields:
+    title: financial-statement-nested-line-item-fields
+    x-stoplight:
+      id: pxeo2vvsw95ej
+    type: object
+    properties:
+      name:
+        type: string
+        x-stoplight:
+          id: 7sdpy7gczfpy5
+      value:
+        type: number
+        x-stoplight:
+          id: epjggz6d3pz2x
+      account_id:
+        type: string
+        x-stoplight:
+          id: 6xm4tdavax98n
+      line_items:
+        type: array
+        x-stoplight:
+          id: 4q9ughg2y5c7z
+        items:
+          x-stoplight:
+            id: u5nsmoadq6m6w
+          type: object
+  cash-flow-statement-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          period_start:
+            type: string
+            format: date-time
+          period_end:
+            type: string
+            format: date-time
+          operating_activities:
+            type: array
+            items:
+              $ref: '#/definitions/financial-statement-nested-fields'
+          investing_activities:
+            type: array
+            items:
+              $ref: '#/definitions/financial-statement-nested-fields'
+          financing_activities:
+            type: array
+            items:
+              $ref: '#/definitions/financial-statement-nested-fields'
+          cash_at_beginning_of_period:
+            type: number
+          cash_at_end_of_period:
+            type: number
+          updated_at:
+            type: string
+            format: date-time
+      - $ref: '#/definitions/common-fields'
+  income-statement-fields:
+    x-examples: {}
+    allOf:
+      - type: object
+        properties:
+          period_start:
+            type: string
+            format: date-time
+          period_end:
+            type: string
+            format: date-time
+          currency:
+            type: string
+          revenue:
+            type: array
+            items:
+              $ref: '#/definitions/financial-statement-nested-fields'
+          cost_of_goods_sold:
+            type: array
+            items:
+              $ref: '#/definitions/financial-statement-nested-fields'
+          gross_profit:
+            type: number
+          operating_expenses:
+            type: array
+            items:
+              $ref: '#/definitions/financial-statement-nested-fields'
+          operating_profit:
+            type: number
+          non_operating_revenue:
+            type: array
+            items:
+              $ref: '#/definitions/financial-statement-nested-fields'
+          non_operating_expenses:
+            type: array
+            items:
+              $ref: '#/definitions/financial-statement-nested-fields'
+          earnings_before_taxes:
+            type: number
+          taxes:
+            type: array
+            items: {}
+          net_profit:
+            type: number
+          updated_at:
+            type: string
+            format: date-time
+      - $ref: '#/definitions/common-fields'
+responses: {}
+tags:
+  - name: Accounts
+  - name: Balance Sheet
+  - name: Bank Accounts
+  - name: Bank Transactions
+  - name: Bill Credit Notes
+  - name: Bill Payments
+  - name: Bills
+  - name: Cash Flow Statements
+  - name: Company Info
+  - name: Contacts
+  - name: Documents
+  - name: Expenses
+  - name: Income Statements
+  - name: Invoice Credit Notes
+  - name: Invoice Payments
+  - name: Invoices
+  - name: Items
+  - name: Journal Entries
+  - name: Purchase Orders
+  - name: Sales Orders
+  - name: Tax Rates
+  - name: Tracking Categories
+parameters:
+  take:
+    name: take
+    in: query
+    required: false
+    type: string
+  skip:
+    name: skip
+    in: query
+    required: false
+    type: string
+  orderBy:
+    name: orderBy
+    in: query
+    required: false
+    type: string
+    default: '{"rootfi_created_at": "desc"}'
+  filter:
+    name: filter
+    in: query
+    required: false
+    type: string
+    default: '{ "rootfi_company_id": {"eq": 21}}'
+  period:
+    name: period
+    in: query
+    required: false
+    type: string
+basePath: /api/v2
+securityDefinitions:
+  api_key:
+    name: api_key
+    type: apiKey
+    in: header
+    description: ''
+security:
+  - api_key: []

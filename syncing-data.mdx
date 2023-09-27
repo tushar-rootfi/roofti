@@ -21,12 +21,12 @@ We offer two modes of syncing
 
 You can also choose what Data Models you want to sync by passing an array of [Data Models](/docs/enums#data-models) to a `data_models_to_sync` parameter.
 
-> 🚧
-> 
-> Only sync the data you need
-> 
-> We suggest performing a sync only for Data Models you need to not exhaust the underlying platform's rate limits.
-  
+<Warning>
+
+   **Only sync the data you need**
+
+   We suggest performing a sync only for Data Models you need to not exhaust the underlying platform's rate limits.
+</Warning>
   
 ## Auto Sync
 
@@ -60,10 +60,10 @@ Here are some important terms:
 6. For example, when the **Accounts Data Model**, has been set with an **Interval of 2** and **Sync Frequency of Daily**. It will be synced every two days.
 
   
-> 📘
-> 
-> Why is setting an appropriate frequency for each data model important?
-> 
-> **Setting an appropriate frequency for each data model matters because of the underlying rate limits of the platform.** 
-> 
-> If your customers have a lot of data, even if you set all the data models to sync hourly the syncing will be automatically paused and restarted based on the the platforms rate limits so you may not get real time data of the data models you care about. Have a high sync frequency may also disrupt writing data to the platform since those api's also consume the api quota of the underlying platform.
+<Note>
+   **Why is setting an appropriate frequency for each data model important?**
+
+   Setting an appropriate frequency for each data model matters because of the underlying rate limits of the platform.
+
+   If your customers have a lot of data, even if you set all the data models to sync hourly the syncing will be automatically paused and restarted based on the the platforms rate limits so you may not get real time data of the data models you care about. Have a high sync frequency may also disrupt writing data to the platform since those api's also consume the api quota of the underlying platform.
+</Note>

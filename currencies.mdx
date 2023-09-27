@@ -1,0 +1,18 @@
+---
+title: "Currencies"
+description: "**The Currencies Data Model** is designed to provide a unified representation of currencies across various accounting platforms."
+---
+
+The model unifies essential currency details, such as name, code, symbol and exchange rate, streamlining the handling of currencies from different platforms.
+
+  
+## Properties Supported
+
+| Property           | Type    | Description                                  |
+| ------------------ | ------- | -------------------------------------------- |
+| platform\_id       | string  | The accounting platform's ID of the currency |
+| name               | string  | Display name                                 |
+| code               | string  | Simple ID for the currency                   |
+| symbol             | string  | Currency Symbol                              |
+| is\_base\_currency | boolean | Is company's base currency                   |
+| exchange\_rate     | float   | Exchange rate of the currency                |

@@ -1,0 +1,74 @@
+---
+title: "Microsoft Dynamics 365 Business Central"
+description: "Learn how to set up our Microsoft Dynamics 365 Business Central integration."
+---
+
+If you wish to set up Microsoft Dynamics 365 Business Central on the RootFi Portal, you will need to follow the steps outlined below.
+
+  
+---
+
+### Part 1: Create an App
+
+Follow the link [https://portal.azure.com/#view/Microsoft\_AAD\_RegisteredApps/ApplicationsListBlade](https://portal.azure.com/#view/Microsoft%5FAAD%5FRegisteredApps/ApplicationsListBlade)
+
+Click on the +New Registration, you will see a form like this.
+
+![](/images/a5c5a30-Screenshot_2973.png)
+
+1. Enter the user-facing display name for this application (this can be changed later).
+2. Select Supported account types: Select Accounts in any organisational directory (Any Azure AD directory - Multi-tenant) and personal Microsoft accounts (e.g. Skype, Xbox). This allows RootFi to access data in Dynamics 365 Business Central.
+3. In the Redirect URI, select the dropdown value as Web and in the value, paste the url, https://intrgrate.rootfi.dev/oauth/callback
+4. Now Click the Register Button, now you have created an app.
+5. Below, You can see the newly created app.
+
+  
+### Part 2: Copy Client ID and Client Secret
+
+1. Click on the newly created app, Go to the Overview section, you can see the Application Client ID similar to 38b55dff-\* **\*-4602-\*\***\-d13dc644\*\*\*\*.
+
+![Client ID MS Dynamics](/images/65ad5f0-Screenshot_2962.png)
+
+  
+### Part 3: Generate and retrieve your client secret
+
+ In the Azure Portal:
+
+1. Select Certificates & secrets in the left menu.
+2. Under Client secrets, click New client secret.
+3. In the Add a client secret dialogue, update the following information:
+4. Description: Enter a short description of your client secret to make it easier to find.  
+Expires: Select the most appropriate option that complies with your company's security policy.  
+Click Add.
+
+Your **client secret** is generated and displayed at the bottom of the page. Important: The Secret Value won't be displayed again in full, so you must copy the value now.
+
+> 📘
+> 
+> Important
+> 
+> The secret value won't be displayed again in full, so you must copy the value as soon as it gets generated.
+
+  
+### Part 4: Update access permissions
+
+Now update the access permissions for your application. These control the data that your app can access in Business Central.
+
+1. Select API permissions in the left menu.
+2. Under Configured permissions, click Add permission.
+3. In the Request API permissions pane, scroll down and select Dynamics 365 Business Central.
+4. Select Delegated permissions and also select the first two listed permissions:  
+**user\_impersonation** and **Financials.ReadWrite.All**
+
+![Permissions](/images/77f804f-delegated_permissions.png)
+
+1. Click 'Add Permissions'.
+2. Above the listed permissions, select Grant admin consent for Default Directory and then select Yes to confirm your change. This option might not be available for all subscription types
+
+  
+### Part 5: Enter Your Client ID and Client Secret on the RootFi Dashboard
+
+1. Login to the RootFi dashboard.
+2. Select the 'Integrations' tab on the sidebar - here you will see a list of platforms you can integrate with.
+3. Click the 'Set Up' button on the MS Dynamics 365 card.
+4. When the form opens up simply enter the 'Client ID' and 'Client Secret' that you generated and click 'Save'.

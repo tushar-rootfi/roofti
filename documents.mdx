@@ -1,8 +1,7 @@
 ---
 title: "Documents"
+description: "**The Documents Data Model** simplifies the handling of document documents across various accounting platforms, providing a standardised approach to accessing and managing document-related information."
 ---
-
-**The Documents Data Model** simplifies the handling of document documents across various accounting platforms, providing a standardised approach to accessing and managing document-related information.
 
 * Unified document properties: The model unifies essential document details, such as file name, file type, file size, and platform ID, making it easier to work with documents from different platforms.
 * Document type association: Documents can be linked to specific document types (e.g., bills, invoices, expenses) using the `document_type_id` and `document_type` properties, facilitating easy retrieval and organisation of documents.
@@ -10,12 +9,11 @@ title: "Documents"
 * Document upload status: When you request for a document to be downloaded, Rootfi will download the document then cache the document on to its servers so future calls to download the document will be faster. The `document_uploaded` property indicates whether Rootfi has uploaded the document to its servers.
 
   
-> 📘
-> 
-> Downloading the Document
-> 
-> After initially syncing the documents data `document_uploaded` will be `false` for all the documents. To download the document you must call the [Download Documents API](https://postman.rootfi.dev/#049236ea-0e6b-4a50-9062-9d5df8397e41). This API will download the document and return a temporary `download_link`.
+<Note>
+    **Downloading the Document**
 
+    After initially syncing the documents data `document_uploaded` will be `false` for all the documents. To download the document you must call the [Download Documents API](https://postman.rootfi.dev/#049236ea-0e6b-4a50-9062-9d5df8397e41). This API will download the document and return a temporary `download_link`.
+</Note>
   
 ## Properties Supported
 
